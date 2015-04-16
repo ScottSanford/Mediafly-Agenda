@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="agendaApp">
+<head>
+
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
+	<title>Agenda</title>
+
+
+	<link rel="stylesheet" href="lib/bootstrap.css">
+	<link rel="stylesheet" href="css/font-awesome.min.css">
+	<link rel="stylesheet" href="css/animate.css">
+	<link rel="stylesheet" href="css/xeditable.css">
+	<link rel="stylesheet" href="css/angular-growl.css">
+	<link rel="stylesheet" href="css/styles.css">
+	
+
+
+</head>
+<body>
+
+
+	<div class="container" ng-controller="agendaListCtrl">
+		<menu-bar></menu-bar>
+		<div ng-view></div>
+	</div>
+
+	<!-- main libaries -->
+	<script src="lib/jquery-1.9.1.min.js"></script>
+	<script src="lib/angular.js"></script>
+
+	<!-- jQuery Plugins-->
+	<script src="lib/fastclick.js"></script>
+	<script src="lib/hammer.min.js"></script>
+
+	<!-- angular modules -->
+	<script src="lib/angular-route.js"></script>
+	<script src="lib/angular-animate.js"></script>
+	<script src="lib/angular-touch.min.js"></script>
+	<script src="lib/ngDraggable.js"></script>
+	<script src="lib/xeditable.js"></script>
+	<script src="lib/angular-hammer.js"></script>
+	<script src="lib/angular-growl-notifications.js"></script>
+	
+	<!-- other scripts -->
+	<script src="lib/mflyCommands.js"></script>
+
+	<!-- main script -->
+	<script src="main.js"></script>
+
+	<!-- services -->
+	<script src="services/mflyAngular.js"></script>
+	<script src="services/mflyCommands-service.js"></script>
+
+	<!-- directives -->
+	<script src="directives/menu-bar.js"></script>
+
+	<!-- controllers -->
+	<script src="controllers/agenda-list.js"></script>
+	<!-- // <script src="http://10.0.0.176:8080/target/target-script-min.js"></script> -->
+
+	<script type="text/javascript">
+	$(document).ready(function(){
+			// Uses document because document will be topmost level in bubbling
+		    $(document).on('touchmove',function(e){
+		        e.preventDefault();
+		    });
+
+		    // init FastClick.js
+		    $(function() {
+			    FastClick.attach(document.body);
+			});
+
+	});
+	</script>
+	
+</body>
+</html>

@@ -1,0 +1,303 @@
+body { 
+  padding-bottom: 70px; 
+  font-size: 18px;
+  background-color: #f3f5f0;
+}
+
+
+@font-face {
+  font-family: 'Open Sans Light';
+  src: url('../fonts/OpenSans-Light.ttf');
+}
+
+@font-face {
+  font-family: 'Open Sans Regular';
+  src: url('../fonts/OpenSans-Regular.ttf');  
+}
+
+@font-face {
+  font-family: 'Open Sans Semibold';
+  src: url('../fonts/OpenSans-Semibold.ttf');
+}
+
+.agenda-title {
+  text-align: center;
+  margin: 30px auto;
+  font-family: 'OpenSans-Light';
+  font-size: 40px;
+}
+
+.agenda-list {
+  margin-left:100px;
+}
+
+#sortable {
+  margin-top:30px;
+}
+
+li {
+    padding: 5px;
+    /*border: 1px solid #999;*/
+    /*background: #eee;*/
+    margin: 5px;
+    margin-bottom:30px;
+    cursor: move;
+    list-style-type:none;
+    font-size:24px;
+}
+
+/*Edit Menu*/
+
+.actions { 
+  position: fixed; 
+  top: 0px; 
+  left: 0px; 
+  height: 100%;  
+  background-color: #9fbe3c; 
+  width: 65px; 
+}
+
+.actions-toggle { 
+  position:fixed; 
+  top: 3px; 
+  left: 3px; 
+}
+
+.actions-toggle img {
+  width: 30px; 
+  height: 25px; 
+  margin-left:15px;
+  margin-top: 7px;
+}
+
+.action-item { 
+  display: block;
+  width:100%;
+  height:65px;
+  background-color: #e0e2dd;
+  font-family: 'OpenSans-Light';
+  font-size: 14px;
+  border-bottom: 1px solid black;
+  /*border-right: 1px solid black;*/
+  padding-top:10px;
+  padding-bottom:5px;
+}
+
+.action-item:first-of-type {
+  height:50px;
+}
+
+.action-item:first-of-type img {
+  width:30px;
+  height:25px;
+}
+
+.action-item img {
+  width:30px;
+  height:auto;
+  display: block;
+  margin:0 auto;
+}
+
+.action-item span {
+  display: block;
+  text-align: center;
+  margin-top:-17px;
+}
+
+/*end of edit menu*/
+
+.edit-button {
+  display:none;
+}
+
+.inputtextbox {
+	margin-left:50px;
+}
+
+.inputtextbox input {
+	float:left;
+}
+
+#addBtn {
+	float:left;
+	margin-left:5px;
+}
+
+/* When you click on "Click Me" Animations */
+.animate-enter { 
+    -webkit-animation: enter 600ms cubic-bezier(0.445, 0.050, 0.550, 0.950);
+    animation: enter 600ms cubic-bezier(0.445, 0.050, 0.550, 0.950);
+	display: block;
+    position: relative;
+} 
+
+@-webkit-keyframes enter {
+	from {
+	    opacity: 0;
+    	height: 0px;
+    	left: -70px;
+    }
+    75% {
+    	left: 15px;
+    }
+    to {
+        opacity: 1;
+    	height: 30px;
+    	left: 0px;
+    }
+}
+
+@keyframes enter {
+	from {
+	    opacity: 0;
+    	height: 0px;
+    	left: -70px;
+    }
+    75% {
+    	left: 15px;
+    }
+    to {
+        opacity: 1;
+    	height: 30px;
+    	left: 0px;
+    }
+}
+
+.ng-enter {
+	transition: 1.2s;
+	opacity: 0;
+}
+
+.ng-enter-active {
+	opacity: 1;
+}
+
+.deleteWrapper {
+	width: 80px;
+	height:80px;
+	position: absolute;
+  left:0;
+  right:0;
+  bottom:20px;
+	padding:5px;
+  margin:0 auto;
+}
+
+.dottedline {
+	border:5px dashed #9fbe3c;
+	padding:5px;
+}
+
+.deleteIcon {
+	width:100%;
+	height:auto;
+}
+
+.example-animate-container {
+  background:white;
+  list-style:none;
+  margin:0;
+  padding:0 10px;
+}
+ 
+.animate-repeat {
+  line-height:40px;
+  list-style:none;
+  box-sizing:border-box;
+}
+ 
+.animate-repeat.ng-move,
+.animate-repeat.ng-enter,
+.animate-repeat.ng-leave {
+  -webkit-transition:all linear 0.5s;
+  transition:all linear 0.5s;
+}
+ 
+.animate-repeat.ng-leave.ng-leave-active,
+.animate-repeat.ng-move,
+.animate-repeat.ng-enter {
+  opacity:0;
+  max-height:0;
+}
+ 
+.animate-repeat.ng-leave,
+.animate-repeat.ng-move.ng-move-active,
+.animate-repeat.ng-enter.ng-enter-active {
+  opacity:1;
+  max-height:40px;
+}
+
+/**
+ * With nested lists it's very important that only the droplist and the
+ * draggable elements react to mouse events. This can be achieved as follows:
+ */
+ul[dnd-list] * {
+  pointer-events: none;
+}
+
+/**
+ * For the correct positioning of the placeholder element, the dnd-list and
+ * it's children must have position: relative
+ */
+ul[dnd-list], ul[dnd-list] > li { 
+    pointer-events: auto;
+  position: relative;
+}
+
+/**
+ * The dnd-list should always have a min-height,
+ * otherwise you can't drop to it once it's empty
+ */
+.simpleDemo ul[dnd-list] {
+    min-height: 42px;
+    padding-left: 0px;
+}
+
+/**
+ * The dndDraggingSource class will be applied to
+ * the source element of a drag operation. It makes
+ * sense to hide it to give the user the feeling
+ * that he's actually moving it.
+ */
+.simpleDemo ul[dnd-list] .dndDraggingSource {
+    display: none;
+}
+
+/**
+ * An element with .dndPlaceholder class will be
+ * added to the dnd-list while the user is dragging
+ * over it.
+ */
+.simpleDemo ul[dnd-list] .dndPlaceholder {
+    display: block;
+    background-color: #ddd;
+    min-height: 42px;
+}
+
+/**
+ * The dnd-lists's child elements currently MUST have
+ * position: relative. Otherwise we can not determine
+ * whether the mouse pointer is in the upper or lower
+ * half of the element we are dragging over. In other
+ * browsers we can use event.offsetY for this.
+ */
+.simpleDemo ul[dnd-list] li {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-top-right-radius: 4px;
+    border-top-left-radius: 4px;
+    display: block;
+    padding: 10px 15px;
+    margin-bottom: -1px;
+}
+
+/**
+ * Show selected elements in green
+ */
+.simpleDemo ul[dnd-list] li.selected {
+    background-color: #dff0d8;
+    color: #3c763d;
+}
+
+ .ui-state-highlight { height: 1.5em; line-height: 1.2em; border-color: }

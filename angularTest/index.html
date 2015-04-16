@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1.0, user-scalable=no">
+    <title>Agenda</title>
+
+
+    <link rel="stylesheet" href="_css/mystyles.css">
+    <link rel="stylesheet" href="_css/xeditable.css">
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
+
+</head>
+
+
+<body>
+
+
+<div>
+    <h1 class="agenda-title">Agenda</h1>
+</div>
+
+<div ng-controller="SortableCTRL" class="agenda-list">
+
+        <div class="actions-toggle" ng-click="showActions=true" ng-show="!showActions">
+            <img src="_images/pancake-icon.png">
+        </div>
+
+        <div class="actions" ng-show="showActions">
+
+            <div class="action-item" ng-click="showActions=false">
+                <img src="_images/pancake-icon.png">
+            </div> 
+
+            <div class="action-item" ng-click="showAddButton=!showAddButton; toggleSingleClass()">
+                <img src="_images/edit-icon.png"><br>
+                <span>Edit</span>
+            </div>     
+
+            <div class="action-item" ng-click="saveAgendaToTemplate()">
+                <img src="_images/save-icon.png"><br>
+                <span>Save</span>
+            </div>  
+
+            <div class="action-item" ng-click="loadAgendaFromTemplate()">
+                <img src="_images/load-icon.png"><br>
+                <span>Load</span>
+            </div>  
+
+            <div class="action-item" onclick="window.location.href='mfly://control/done';">
+                <img src="_images/close-icon.png"><br>
+                <span>Close</span>
+            </div>          
+            <!--<a class="action-item" href="mfly://control/done">Close</a>-->
+        </div>
+
+    <ul id="sortable" class="sortable" ui-sortable ng-model="sortableArray[0]">
+
+        <li ng-repeat="item in sortableArray[0]" editable-text="item" e-form="itemForm" dnd-draggable="item"
+        dnd-moved="sortableArray.splice($index, 1)">
+          {{item}}
+          <a href="" class="btn btn-default" ng-hide="itemForm.$visible;" ng-click="itemForm.$show()" ng-show="showEditButton" ng-class="{'edit-button': class_status}">Edit</a>
+        </li>
+
+    </ul>
+
+    <div class="inputtextbox animate-enter" ng-show="showAddButton">
+
+        <input type="text" ng-model="AgendaText" ng-model-instant>
+
+        <a href=''><div class="btn btn-default" id="addBtn" ng-click="add()">+ Add</div></a>
+
+    </div>
+
+
+    <!-- trash can delete -->
+    <div id="sortable-delete" class="deleteWrapper" ng-class="{'edit-button': class_status}" showonhover>
+
+        <img class="deleteIcon" src="_images/delete_agenda_item.png" class="deleteIcon">
+
+    </div>
+    <!-- end of trash can delete -->
+</div>
+
+<script src="_js/jquery-1.11.0.js"></script>
+<script src="_js/jquery-ui.js"></script>
+<script src="_js/angular.min.js"></script>
+<script src="_js/angular-animate.min.js"></script>
+<script src="_js/angular-dragdrop.min.js"></script>
+<!-- <script src="_js/draggabledirective.js"></script>
+<script src="_js/droptargetdirective.js"></script> -->
+<script src="_js/angular-drag-and-drop-lists.js"></script>
+<script src="_js/myscript.js"></script>
+<script src="_js/xeditable.js"></script>
+<script src="_js/sortable.js"></script>
+
+</body>
+
+</html>
