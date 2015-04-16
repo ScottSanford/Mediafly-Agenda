@@ -13,7 +13,8 @@ angular.module('agendaApp',[
   		editableOptions.theme = 'bs3'; 
 	})
 
-	.config(function ($routeProvider, growlProvider) {	        
+	.config(function ($routeProvider, $compileProvider, growlProvider) {
+			$compileProvider.imgSrcSanitizationWhitelist(/^(mfly:\/\/data\/image|http:\/\/)/);	        
 	        $routeProvider
 	        	.when('/', {
 	        		templateUrl: "partials/agenda-list.html"    		
@@ -21,7 +22,7 @@ angular.module('agendaApp',[
 	            .otherwise({
 	                redirectTo: '/'
 	            });
-	        growlProvider.globalTimeToLive(2000);
+	        growlProvider.globalTimeToLive(3000);
 	        growlProvider.globalDisableCountDown(true);
 	})
 
