@@ -1,0 +1,22 @@
+{
+	"initAgenda": 	[
+		{ 
+		  "id": "0", 
+		  "name": "Introductions",
+		  "title": "Agenda",
+		  "checked": false
+		},
+	    { 
+	      "id": "1", 
+	      "name": "Objectives",
+	      "title": "Agenda",
+	      "checked": false
+	    },
+	    { 
+	      "id": "2", 
+	      "name": "Next Steps",
+	      "title": "Agenda",
+	      "checked": false
+	    }
+	]
+}

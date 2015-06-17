@@ -7,58 +7,81 @@
 	<title>Agenda</title>
 
 
-	<link rel="stylesheet" href="lib/bootstrap.css">
+	<link rel="stylesheet" href="css/bootstrap.css">
 	<link rel="stylesheet" href="css/font-awesome.min.css">
 	<link rel="stylesheet" href="css/animate.css">
-	<link rel="stylesheet" href="css/xeditable.css">
-	<link rel="stylesheet" href="css/angular-growl.css">
+	<link rel="stylesheet" href="css/jquery.mmenu.css">
+	<link rel="stylesheet" href="css/mfly-menu.css">
+	<link rel="stylesheet" href="css/ngDialog.css">
+	<link rel="stylesheet" href="css/ngDialog-theme-plain.css">
+	<link rel="stylesheet" href="css/ng-sortable.css">
 	<link rel="stylesheet" href="css/styles.css">
 	
-
-
 </head>
 <body>
 
+    <div class="header">
+        <a href="#menu"><span class="fa fa-bars fa-2x" id="hamburger-menu"></span></a>
+    </div>
 
-	<div class="container" ng-controller="agendaListCtrl">
-		<menu-bar></menu-bar>
+	<nav id="menu">
+	        <ul>
+	            <li class="menu-edit" ng-click="showEditButtons=!showEditButtons">
+	              <i class="fa fa-pencil"></i> Edit
+	            </li>
+	            <li class="menu-load" ng-click="loadAgendaFromTemplate()">
+	              <i class="fa fa-download"></i> Load
+	            </li>
+	            <li class="menu-close" ng-click="closeMenu()">
+	              <i class="fa fa-times"></i> Close 
+	            </li>
+
+				<li class="menu-annotations" ng-click="closeMenu()">
+	              <i class="fa fa-pencil-square-o"></i> Annotations
+	            </li>
+
+	        </ul>
+	</nav>
+
+	<div class="container">
 		<div ng-view></div>
 	</div>
 
+	<span class="arrow-left fa fa-chevron-left fa-2x" ng-click="previousItem()"></span>
+	<span class="arrow-right fa fa-chevron-right fa-2x" ng-click="nextItem()"></span>
+
 	<!-- main libaries -->
-	<script src="lib/jquery-1.9.1.min.js"></script>
-	<script src="lib/angular.js"></script>
-
+	<script src="components/jquery/dist/jquery.js"></script>
+	<script src="components/angular/angular.js"></script>
 	<!-- jQuery Plugins-->
-	<script src="lib/fastclick.js"></script>
-	<script src="lib/hammer.min.js"></script>
-
+	<script src="components/fastclick/lib/fastclick.js"></script>
+	<script src="components/hammerjs/hammer.js"></script>
+	<script src="lib/jquery.mmenu.min.js"></script>
+	<script src="lib/ext.js"></script>
 	<!-- angular modules -->
-	<script src="lib/angular-route.js"></script>
-	<script src="lib/angular-animate.js"></script>
-	<script src="lib/angular-touch.min.js"></script>
-	<script src="lib/ngDraggable.js"></script>
-	<script src="lib/xeditable.js"></script>
-	<script src="lib/angular-hammer.js"></script>
-	<script src="lib/angular-growl-notifications.js"></script>
-	
+	<script src="components/angular-route/angular-route.js"></script>
+	<script src="components/angular-animate/angular-animate.js"></script>
+	<script src="components/ngDialog/js/ngDialog.js"></script>
+	<script src="components/ng-sortable/dist/ng-sortable.js"></script>
+	<script src="components/angular-mocks/angular-mocks.js"></script>	
+	<script src="components/angular-touch/angular-touch.js"></script>
+	<script src="components/angular-hammer/angular-hammer.js"></script>
 	<!-- other scripts -->
 	<script src="lib/mflyCommands.js"></script>
+	<!-- directives -->	
 
 	<!-- main script -->
 	<script src="main.js"></script>
-
 	<!-- services -->
 	<script src="services/mflyAngular.js"></script>
 	<script src="services/mflyCommands-service.js"></script>
-
-	<!-- directives -->
-	<script src="directives/menu-bar.js"></script>
-
+	<script src="services/edit-agenda-controls.js"></script>
+	<script src="services/init-agenda.js"></script>
+	<script src="backend/init-data.js"></script>
 	<!-- controllers -->
 	<script src="controllers/agenda-list.js"></script>
-	<script src="http://10.0.0.112:8080/target/target-script-min.js"></script>
-
+	<script src="controllers/add-agenda-item-ctrl.js"></script>
+	<!-- // <script src="http://10.0.0.112:8080/target/target-script-min.js"></script> -->
 	<script type="text/javascript">
 	$(document).ready(function(){
 			// Uses document because document will be topmost level in bubbling
@@ -70,7 +93,6 @@
 		    $(function() {
 			    FastClick.attach(document.body);
 			});
-
 	});
 	</script>
 	

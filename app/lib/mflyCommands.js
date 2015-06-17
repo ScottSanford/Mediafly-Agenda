@@ -10,8 +10,8 @@ var mflyCommands = function () {
      * Private variables and functions
      */
 
-    var prefix = "mfly://";
-    // var prefix = "http://127.0.0.1:8080/";
+    // var prefix = "mfly://";
+    var prefix = "http://127.0.0.1:8080/";
 
     function _isWindows8() {
         var userAgent = navigator.userAgent.toLowerCase();
@@ -545,8 +545,8 @@ var mflyCommands = function () {
 /**
  * Set the prefix, based on whether this is a development instance or not.
  */
-mflyCommands.setPrefix("mfly://");
-// mflyCommands.setPrefix("http://127.0.0.1:8000/");
+// mflyCommands.setPrefix("mfly://");
+mflyCommands.setPrefix("http://127.0.0.1:8000/");
 
 
 /**

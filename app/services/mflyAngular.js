@@ -2,13 +2,13 @@
 
 //XXX TODO This is very un-angular.
 var DEBUG = true;
-var HOSTNAME = "mfly://";
-// var HOSTNAME = "http://127.0.0.1:8000/";
+// var HOSTNAME = "mfly://";
+var HOSTNAME = "http://127.0.0.1:8000/";
 
 function mflyDataInit(obj) {
     DEBUG = false; // Since we are on a device, DEBUG should be false
-    var HOSTNAME = "mfly://";
-    // HOSTNAME = 'http://127.0.0.1:8000/';
+    // var HOSTNAME = "mfly://";
+    HOSTNAME = 'http://127.0.0.1:8000/';
     var $scope = angular.element('html').scope();
     $scope.$apply(function() {
         $scope.$broadcast('Mediafly.mflyDataInit', obj);
@@ -67,7 +67,6 @@ angular.module('Mediafly.services', []).
                         "Content-Type": "text/plain; charset=utf-8"
                     }
                 }).success(function (data, status, headers, config) {
-                    console.log(data, status, headers, config);
                     return data;
                 });
             },

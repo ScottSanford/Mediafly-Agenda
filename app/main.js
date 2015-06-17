@@ -2,27 +2,27 @@ angular.module('agendaApp',[
 		'ngRoute', 
 		'ngAnimate', 
 		'ngTouch', 
-		'ngDraggable',
-		'xeditable',
-		'angular-growl',
 		'hmTouchEvents',
-		'Mediafly.services'
+		'Mediafly.services', 
+		'ngDialog',
+		'ui.sortable', 
+		'ngMockE2E'
 	])
 
-	.run(function(editableOptions) {
-  		editableOptions.theme = 'bs3'; 
-	})
-
-	.config(function ($routeProvider, $compileProvider, growlProvider) {
+	.config(function ($routeProvider, $compileProvider) {
 			$compileProvider.imgSrcSanitizationWhitelist(/^(mfly:\/\/data\/image|http:\/\/)/);	        
 	        $routeProvider
 	        	.when('/', {
-	        		templateUrl: "partials/agenda-list.html"    		
+	        		templateUrl: "partials/agenda.html",
+	        		controller: 'agendaListCtrl',
+	        		resolve: {
+							agendaData: function(InitAgendaService){
+								return InitAgendaService.get();
+							}
+						}    		
 	        	})
 	            .otherwise({
 	                redirectTo: '/'
 	            });
-	        growlProvider.globalTimeToLive(3000);
-	        growlProvider.globalDisableCountDown(true);
 	})
 

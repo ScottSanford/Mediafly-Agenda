@@ -1,25 +1,29 @@
 angular.module('agendaApp')
 
-	.controller('agendaListCtrl', function($scope, mfly, MflyDataService, growl){
+    .filter('removePlusSign' , function(){
+        return function(name) {
+            var text = item.replace("+", " ");
+            return String(text);
+        }
+    })
 
-        $scope.agenda = "Agenda";
+	.controller('agendaListCtrl', function($scope, mfly, MflyDataService, EditControlsService, InitAgendaService, ngDialog){
 
-		$scope.closeApp = function() {
-			mfly.close();
-		}
+        $scope.agenda = {
+            title: 'New Agenda'
+        } 
 
         function initalizeAgenda() {
-            MflyDataService.load('agendaList')
+            $scope.agendaList = InitAgendaService.data;
+
+            // agenda Title
+            MflyDataService.load('agendatitle')
                 .then(function(result){
-                    $scope.agendaList = result.data;
+                    $scope.agenda.title = result.data.title;
                 }, function(result){
-                    console.log("Can't retreive agendaList. Setting default agendaList");
-                    $scope.agendaList = [
-                        { 'id': '0', 'name': 'Introductions'},
-                        { 'id': '1', 'name': 'Objectives'},
-                        { 'id': '2', 'name': 'Next Steps'}
-                    ];   
-                });
+                    $scope.agenda.title = "Meeting Agenda"
+                })
+
         }
 
         initalizeAgenda();
@@ -39,39 +43,82 @@ angular.module('agendaApp')
         // save button
         $scope.saveAgendaToTemplate = function() {
             MflyDataService.save('agendaList', JSON.stringify($scope.agendaList), false);         
-            growl.success("Template has been saved!");
+            MflyDataService.save('agendaTitle', $scope.agenda.title, false);         
         }
 
         // load button
         $scope.loadAgendaFromTemplate = function() {
             MflyDataService.load('agendaList', false).then(function(result){
                 console.log(result.data);
-                // var data = result.data;
-                // var spaceInString = data.replace("+", "");
-                // console.log(spaceInString.data);
                 $scope.agendaList = result.data;
                 $scope.saveAgenda();
-                growl.success("Template has loaded successfully!");
+            });
+            MflyDataService.load('agendaTitle', false).then(function(result){
+                $scope.agenda.title = result.data;
+            })
+        }
+
+        // edit text 
+        $scope.editorEnabled = false;
+
+        // enable in place text editor
+        $scope.enableEditor = function(index) {
+            $scope.editorEnabled = true;
+            $scope.editableTitle = $scope.agendaList[index].name;
+        }
+
+        //cancel in place text editor
+        $scope.disableEditor = function() {
+            $scope.editorEnabled = false;
+        }
+
+        $scope.save = function(index) {
+            console.log($scope.agendaList[index].name);
+            $scope.agendaList[index].name = $scope.editableTitle;
+            // $scope.disableEditor();
+        }
+
+        // add item to agenda list
+
+        $scope.addAgendaItem = function() {
+            ngDialog.open({
+                template: 'partials/add-agenda-item.html',
+                className: 'ngdialog-theme-plain', 
+                controller: 'AddAgendaItemCtrl', 
+                controllerAs: 'controller', 
+                scope: $scope
             });
         }
 
+        $scope.editText = function(item){
+            ngDialog.open({
+                template: 'partials/edit-text.html', 
+                className: 'ngdialog-theme-plain', 
+                controller: ['$scope', function($scope){
+
+                }]
+            })
+        };
+
         // close button
-        $scope.closeMenu = function() {
-            $scope.showActions = false;
-            $scope.showEditButtons = false;
+        $scope.saveDialogBox = function() {
+            ngDialog.open({
+                template: 'partials/save-load-agenda.html', 
+                className: 'ngdialog-theme-plain'
+            });    
+        }
+
+        $scope.saveAndCloseEdit = function() {
+            saveAgendatotemplate();
         }
         // AGENDA MENU END
 
-        // add item to agenda list
-        $scope.add = function(e) {
-            if (e.keyCode === 13) {
-                var newlyAddedItem = {
-                    id: null,
-                    name: $scope.newItem
-                }
-                $scope.agendaList.push(newlyAddedItem);
-                $scope.newItem = '';
-            }
+        // trash dialog 
+        $scope.trashDialog = function() {
+            ngDialog.open({
+                template: 'partials/trash-items.html', 
+                className: 'ngdialog-theme-plain'
+            })
         }
 
         // remove item from agenda list

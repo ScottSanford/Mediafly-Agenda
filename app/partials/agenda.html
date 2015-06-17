@@ -1,0 +1,35 @@
+<h1 class="agenda-title">{{agenda.title}}</h1>
+
+<hr>
+
+<ul class="agenda-list" data-as-sortable data-ng-model="agendaList">
+    <li class="item" ng-repeat="item in agendaList track by $index" ng-click="setSelected($index)" data-as-sortable-item>
+		<div class="edit-controls">
+		    <div class="radio-buttons" ng-show="showEditButtons">
+		        <span><input type="checkbox" ng-model="item.checked"></span>
+		    </div>    
+		    <div class="sortable-arrow" ng-show="showEditButtons" data-as-sortable-item-handle>
+		        <span class="fa fa-arrows-v"></span>
+		    </div>
+		</div>
+
+    	{{item.name.split("+").join(' ')}}
+    </li>
+</ul>
+
+<div growl></div>
+<img src="images/mediafly-logo.png" class="company-logo">
+
+
+<div class="btn-group edit-buttons" ng-show="showEditButtons">
+    <button class="btn btn-default edit-buttons add"  ng-click="addAgendaItem()"><span class="fa fa-plus"></span></button>
+    <button class="btn btn-default edit-buttons save" ng-click="saveDialogBox()"><span class="fa fa-floppy-o"></span></button>
+    <button class="btn btn-default edit-buttons edit" ng-click="editText()"><span class="fa fa-pencil"></span></button>
+    <button class="btn btn-default edit-buttons trash" ng-click="trashDialog()"><span class="fa fa-trash"></span></button>
+</div>
+
+
+<!-- old html add item -->
+<!-- <div class="inputtextbox animate-enter" ng-show="showEditButtons">
+    <input type="text" ng-model="newItem" placeholder="Add new agenda item..." ng-keydown="add($event)">
+</div> -->
