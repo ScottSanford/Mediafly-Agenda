@@ -5,7 +5,7 @@ angular.module('agendaApp').run(function($httpBackend) {
               {'name': 'Next Steps', 'title': 'Agenda','checked': false}
           ];
 
-  var agendaTitle = {"title" : 'Mediafly Title'};
+  var agendaTitle = {"title" : 'Agenda Title'};
 
   // returns the current list of phones
   $httpBackend.whenGET('/data/init-data.json').respond(agendaList);

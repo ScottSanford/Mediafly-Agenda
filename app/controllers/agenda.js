@@ -7,7 +7,7 @@ angular.module('agendaApp')
         }
     })
 
-	.controller('agendaListCtrl', function($scope, mfly, MflyDataService, EditControlsService, InitAgendaService, ngDialog){
+	.controller('agendaListCtrl', function($scope, mfly, MflyDataService, EditControlsService, InitAgendaService, DialogService){
 
         $scope.agenda = {
             title: 'New Agenda'
@@ -78,48 +78,30 @@ angular.module('agendaApp')
             // $scope.disableEditor();
         }
 
-        // add item to agenda list
+        // Edit Controls (add, save, edit, trash)
 
-        $scope.addAgendaItem = function() {
-            ngDialog.open({
-                template: 'partials/add-agenda-item.html',
-                className: 'ngdialog-theme-plain', 
-                controller: 'AddAgendaItemCtrl', 
-                controllerAs: 'controller', 
-                scope: $scope
-            });
-        }
-
-        $scope.editText = function(item){
-            ngDialog.open({
-                template: 'partials/edit-text.html', 
-                className: 'ngdialog-theme-plain', 
-                controller: ['$scope', function($scope){
-
-                }]
-            })
+        $scope.addDialogBox = function() {
+            DialogService.createDialogBox('partials/add-agenda-item.html', 'AddAgendaItemCtrl');
         };
 
-        // close button
-        $scope.saveDialogBox = function() {
-            ngDialog.open({
-                template: 'partials/save-load-agenda.html', 
-                className: 'ngdialog-theme-plain'
-            });    
-        }
+        $scope.saveDialogBox = function() { 
+            DialogService.createDialogBox('partials/save-load-agenda.html');
+        };
 
+        $scope.editDialogBox = function(item){
+             DialogService.createDialogBox('partials/edit-text.html');
+        };
+
+        $scope.deleteDialogBox = function() {
+            DialogService.createDialogBox('partials/trash-items.html');
+        };
+
+        // AGENDA MENU END
         $scope.saveAndCloseEdit = function() {
             saveAgendatotemplate();
         }
-        // AGENDA MENU END
 
         // trash dialog 
-        $scope.trashDialog = function() {
-            ngDialog.open({
-                template: 'partials/trash-items.html', 
-                className: 'ngdialog-theme-plain'
-            })
-        }
 
         // remove item from agenda list
         $scope.removeItem = function(index) {
