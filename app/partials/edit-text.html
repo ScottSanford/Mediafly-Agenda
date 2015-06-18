@@ -1,11 +1,20 @@
 <label>Edit Text</label>
-<ul>
-	<li class="edit-item-list" ng-repeat="edit in agendaList">
-		<input class="edit-item-input" type="text" ng-model="edit.name" required>
-	</li>
-</ul>
+<form role="form" name="editAgendaText" novalidate>
+	<ul>
+			<li class="edit-item-list" ng-repeat="edit in agendaList">
+					<input class="edit-item-input" name="editField" type="text" ng-model="edit.name" required>
+					<div ng-if="editAgendaText.$submitted" 
+						 ng-messages="editAgendaText.editField.$error" 
+						 class="error-messages">
+				    	<span ng-message="required" class="text-validation">
+				    		Required
+				    	</span>
+				 	</div>
+			</li>
+	</ul>
 
-<div class="save-buttons">
-	<button class="btn btn-default save-button close-modal" ng-click="saveEditedItems()">Save</button>
-	<button class="btn btn-default cancel-button" ng-click="closeDialogBox()">Cancel</button>
-</div>
+	<div class="save-buttons">
+		<button type="submit" class="btn btn-default save-button close-modal" ng-click="saveEditedItems()">Save</button>
+		<button class="btn btn-default cancel-button" ng-click="closeDialogBox()">Cancel</button>
+	</div>
+</form>

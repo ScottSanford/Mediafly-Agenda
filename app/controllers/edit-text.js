@@ -13,11 +13,15 @@ angular.module('agendaApp')
 
         $scope.saveEditedItems = function() {
               // 2-way data binding so just closing dialog box
-              $scope.closeThisDialog();
+              if ($scope.editAgendaText.$valid) {
+              	$scope.closeThisDialog();
+              }
         }
 
         $scope.closeDialogBox = function() {
-              $scope.closeThisDialog();
+              if ($scope.editAgendaText.$valid) {
+              	$scope.closeThisDialog();
+              }
         }
 
 	});

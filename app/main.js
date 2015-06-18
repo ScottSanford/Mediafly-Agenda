@@ -6,7 +6,8 @@ angular.module('agendaApp',[
 		'Mediafly.services', 
 		'ngDialog',
 		'ui.sortable', 
-		'ngMockE2E'
+		'ngMockE2E', 
+		'ngMessages'
 	])
 
 	.config(function ($routeProvider, $compileProvider) {

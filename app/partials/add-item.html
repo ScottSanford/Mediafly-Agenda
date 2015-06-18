@@ -1,3 +1,11 @@
 <label>Agenda Item</label>
-<input type="text" class="add-agenda-item" ng-model="newItem" required>
-<button class="btn btn-default add-button close-modal" ng-click="addItem()">Add</button>
+<form role="form" name="addAgendaItem" novalidate>
+	<input type="text" class="add-agenda-item" name="addItemInput" ng-model="newItem" required>
+	<div ng-if="addAgendaItem.$submitted" 
+		 ng-messages="addAgendaItem.addItemInput.$error">
+			<span ng-message="required" class="text-validation-additem">
+    			Required
+    		</span>
+ 	</div>
+	<button type="submit" class="btn btn-default add-button close-modal" ng-click="addItem()">Add</button>
+</form>

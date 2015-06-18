@@ -227,12 +227,24 @@ label {
   list-style-type: none;
 }
 
-.ng-dirty {
+.add-agenda-item.ng-dirty, .edit-item-input.ng-dirty {
   border:2px solid #54A844;
 }
 
-.ng-invalid {
+.add-agenda-item.ng-invalid, .edit-item-input.ng-invalid {
   border:2px solid #a94442;
+}
+
+.text-validation {
+  color:#8a6d3b;
+  position: relative;
+  left:279px;
+}
+
+.text-validation-additem {
+  color:#8a6d3b;
+  position: relative;
+  left:356px;
 }
 
 /***********************************************************************
