@@ -1,11 +1,12 @@
 /***********************************************************************
 						                Global Styles
 ***********************************************************************/
-.click-to-edit {
-    display: inline-block;
+* {
+  -webkit-user-select:none;
+  user-select:none;
 }
 
- ul.agenda-list {
+ul.agenda-list {
     list-style: none;
     padding:0;
     margin:0;
@@ -21,12 +22,7 @@ li.item:before {
     color: #9fbe3c; /* or whatever color you prefer */
 }
 
-* {
-  -webkit-user-select:none;
-  user-select:none;
-}
-
-textarea:focus, input:focus{
+textarea:focus, input:focus, button:hover, button:active{
     outline: 0;
 }
 
@@ -40,48 +36,7 @@ textarea:focus, input:focus{
 	width:1024px;
 }
 
-.agenda-title {
-  text-align: center;
-  margin: 50px auto;
-  font-family: Helvetica;
-  font-weight: 300;
-  font-size: 60px;
-  color:#9fbe3c;
-}
-
-.agenda-list {
-  margin-left:25px;
-}
-
-#sortable {
-  margin-top:30px;
-}
-
-.item {
-    margin-left:100px;
-    margin-bottom:30px;
-    font-size:30px;
-}
-
-h1 + form {
-  text-align: center;
-}
-
-.form-control {
-  width:60%;
-}
-
-.editable-wrap {
-  display: block;
-  margin:30px 45px;
-}
-
-.editable-click {
-  color:#000;
-  border:none;
-  text-decoration: none;
-}
-
+/*  Next/Prev arrows bottom of page  */
 .arrow-left {
   position: absolute;
   bottom: 18px;
@@ -98,27 +53,66 @@ h1 + form {
   z-index:100000000;
 }
 
-.close-btn {
-  position: absolute;
-  top:5px;
-  right:5px;
-  background:#9fbe3c;
-  box-shadow: 2px 3px 2px 2px #888985;
-  cursor: pointer;  
-  border-radius: 5px;
-  font-size:1.4em;
-  color:#fff;
-  margin-left: 20px;
-  padding:7px 10px;
-  -webkit-transition: all .1s linear;
-  transition: all .1s linear;
+.btn {
+  border-radius: 4px;
+  border-top:0;
+  border-bottom: 2px solid;
+  background-color: #ccc;
 }
 
-.close-btn:active {
-  top: 1px;
-  outline: none;
-  -webkit-box-shadow: none;
-  box-shadow: none;
+/***********************************************************************
+                            Agenda.html
+***********************************************************************/
+.company-logo {
+  width: 125px;
+  height:auto;
+  position: absolute;
+  bottom: 17px;
+  left: 50px;
+}
+
+.agenda-title {
+  text-align: center;
+  margin: 50px auto;
+  font-family: Helvetica;
+  font-weight: 300;
+  font-size: 60px;
+  color:#9fbe3c;
+}
+
+ul.agenda-list {
+  margin-left:25px;
+}
+
+li.item {
+    margin-left:100px;
+    margin-bottom:30px;
+    font-size:30px;
+}
+
+.item.ng-enter {
+  -webkit-animation: bounceIn 1s;
+  -moz-animation: bounceIn 1s;
+  -o-animation: bounceIn 1s;
+  animation: bounceIn 1s;
+}
+
+.item.ng-leave {
+  -webkit-animation: zoomOut 1s;
+  -moz-animation: zoomOut 1s;
+  -o-animation: zoomOut 1s;
+  animation: zoomOut 1s;
+}
+
+.checkbox {
+  display: block;
+  margin-left: 40px;
+  float:left;
+}
+
+.sortable-arrow {
+  float:right;
+  margin-top:5px;
 }
 
 .edit-buttons {
@@ -126,7 +120,6 @@ h1 + form {
   top:55px;
   right:10px;
   color:#545454;
-/*  background-color:#ccc;*/
   border-color:#666;
 }
 
@@ -135,17 +128,13 @@ h1 + form {
   border-right:#999;
 }
 
-.trash {
+.delete {
   border-right:0;
 }
 
-.btn {
-  border-radius: 4px;
-  border-top:0;
-  border-bottom: 2px solid;
-  background-color: #ccc;
-}
-
+/***********************************************************************
+                            Dialog Boxes
+***********************************************************************/
 label {
   display: inline-block;
   margin-bottom: 5px;
@@ -215,195 +204,6 @@ label {
   margin-right:25px;
 }
 
-.sortable-arrow {
-  float:right;
-  margin-top:5px;
-}
-
-.radio-buttons {
-  display: block;
-  margin-left: 40px;
-  float:left;
-}
-
-/***********************************************************************
-                            Menu Bar
-***********************************************************************/
-hr {
-  margin-top: -10px;
-  width: 100%;
-  height:12px;
-  border:0;
-  box-shadow:inset 0 12px 12px -12px rgba(0,0,0,0.5);
-}
-
-.menu-annotations {
-  margin-top:35px;
-}
-
-.edit-in-place span {
-  cursor: pointer;
-}
-
-.edit-in-place input {
-  display: none;
-}
-
-.edit-in-place.active span {
-  display: none;
-}
-
-.edit-in-place.active input {
-  display: inline-block;
-}
-
-.menu-trap-door {
-  position: absolute;
-  top:0;
-  left:0;
-  width:50px;
-  height:50px;
-}
-
-.actions { 
-  position: fixed; 
-  top: 0px; 
-  left: 0px; 
-  height: 100%;  
-  width: 65px; 
-}
-
-.actions-toggle { 
-  position:fixed; 
-  top: 3px; 
-  left: 3px; 
-}
-
-.actions-toggle img {
-  width: 30px; 
-  height: 25px; 
-  margin-left:15px;
-  margin-top: 7px;
-}
-
-.action-item { 
-  display: block;
-  width:100%;
-  height:75px;
-  font-family: 'OpenSans-Light';
-  font-size: 14px;
-  padding-top:10px;
-  padding-bottom:5px;
-}
-
-.action-item:first-of-type span {
-  width:30px;
-  height:25px;
-}
-
-.action-item span {
-  width:30px;
-  height:auto;
-  display: block;
-  margin:0 auto;
-  display: block;
-  text-align: center;
-  color:#212121;
-}
-
-.action-item span:active {
-  color:red;
-}
-
-.actions.ng-hide-remove {
-  -webkit-animation: fadeInLeft 1s;
-  -moz-animation: fadeInLeft 1s;
-  -o-animation: fadeInLeft 1s;
-  animation: fadeInLeft 1s;
-}
-
-.actions.ng-hide-add {
-  -webkit-animation: slideOutLeft 1s;
-  -moz-animation: slideOutLeft 1s;
-  -o-animation: slideOutLeft 1s;
-  animation: slideOutLeft 1s;
-}
-
-.edit-button {
-  display:none;
-}
-
-.inputtextbox {
-  position: absolute;
-  bottom: 30px;
-  left:380px;
-}
-
-.inputtextbox input {
-    box-sizing:border-box;
-    outline:none;
-    display: block;
-    padding:7px;
-    border:none;
-    border-bottom:2px dashed #9FBE3C;
-    background: transparent;
-    height:45px;
-    width:300px;
-    margin-left:25px;
-}
-
-#addBtn {
-  float:left;
-  margin-left:5px;
-}
-
-.item.ng-enter {
-  -webkit-animation: bounceIn 1s;
-  -moz-animation: bounceIn 1s;
-  -o-animation: bounceIn 1s;
-  animation: bounceIn 1s;
-}
-
-.item.ng-leave {
-  -webkit-animation: zoomOut 1s;
-  -moz-animation: zoomOut 1s;
-  -o-animation: zoomOut 1s;
-  animation: zoomOut 1s;
-}
-
-.active-item {
-  color:#BCD176;
-}
-
-.trashcan {
-  display: inline-block;
-  margin-left: 15px;
-  position: relative;
-  top:-20px;
-}
-
-.selected-menu {
-  margin-left: 112px;
-}
-
-.company-logo {
-  width: 125px;
-  height:auto;
-  position: absolute;
-  bottom: 17px;
-  left: 50px;
-}
-
-.alert-warning {
-  color: #d96d00;
-  background-color: #f5e4d1;
-  border-color:#e6d3bb;
-}
-
-.edit-item-list {
-  list-style-type: none;
-}
-
 .edit-item-input {
   border: 2px solid #ccc;
   height: 34px;
@@ -417,6 +217,16 @@ hr {
   margin-top:10px;
 }
 
+.alert-warning {
+  color: #d96d00;
+  background-color: #f5e4d1;
+  border-color:#e6d3bb;
+}
+
+.edit-item-list {
+  list-style-type: none;
+}
+
 .ng-dirty {
   border:2px solid #54A844;
 }
@@ -426,9 +236,9 @@ hr {
 }
 
 /***********************************************************************
-                            Menu Bar
+                            Media Queries
 ***********************************************************************/
-
+/*iPad Portrait*/
 @media only screen and (max-width: 959px) {
 
   .container {
