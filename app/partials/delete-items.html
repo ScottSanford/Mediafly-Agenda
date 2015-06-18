@@ -1,0 +1,12 @@
+<label>Are you sure you want to delete the following item(s)?</label>
+<div class="alert alert-warning">
+	<ul>
+		<li ng-repeat="delitem in agendaList">
+			{{delitem.name}}
+		</li>
+	</ul>
+</div>
+<div class="save-buttons">
+	<button class="btn btn-default save-button close-modal" ng-click="deleteItems($index)">Delete</button>
+	<button class="btn btn-default cancel-button close-modal" ng-click="closeDialogBox()">Cancel</button>
+</div>

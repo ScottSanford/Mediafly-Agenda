@@ -78,10 +78,10 @@ angular.module('agendaApp')
             // $scope.disableEditor();
         }
 
-        // Edit Controls (add, save, edit, trash)
+        // Edit Controls (add, save, edit, delete)
 
         $scope.addDialogBox = function() {
-            DialogService.createDialogBox('partials/add-agenda-item.html', 'AddAgendaItemCtrl');
+            DialogService.createDialogBox('partials/add-item.html', 'AddAgendaItemCtrl');
         };
 
         $scope.saveDialogBox = function() { 
@@ -89,11 +89,11 @@ angular.module('agendaApp')
         };
 
         $scope.editDialogBox = function(item){
-             DialogService.createDialogBox('partials/edit-text.html');
+             DialogService.createDialogBox('partials/edit-text.html', 'EditTextCtrl');
         };
 
         $scope.deleteDialogBox = function() {
-            DialogService.createDialogBox('partials/trash-items.html');
+            DialogService.createDialogBox('partials/delete-items.html', 'DeleteItemCtrl');
         };
 
         // AGENDA MENU END
@@ -107,11 +107,6 @@ angular.module('agendaApp')
         $scope.removeItem = function(index) {
             // var item = $scope.agendaList[index];
             $scope.agendaList.splice(index, 1);
-        }
-
-        // highlight agenda item
-        $scope.isSelected = function() {
-           $scope.agendaList.selected = true;
         }
 
         

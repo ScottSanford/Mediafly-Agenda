@@ -23,9 +23,9 @@ angular.module('agendaApp')
 
 		}, 
 
-		deleteAgendaItems: function() {		
-
+		deleteAgendaItems: function(index) {
+			InitAgendaService.data.splice(index,1);
 		}
 
-}
+	}
 });

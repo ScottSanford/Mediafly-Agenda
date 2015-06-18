@@ -26,6 +26,14 @@ li.item:before {
   user-select:none;
 }
 
+textarea:focus, input:focus{
+    outline: 0;
+}
+
+*:focus {
+    outline: 0;
+}
+
 .container {
 	padding-right:0;
 	padding-left:0;
@@ -392,6 +400,30 @@ hr {
   border-color:#e6d3bb;
 }
 
+.edit-item-list {
+  list-style-type: none;
+}
+
+.edit-item-input {
+  border: 2px solid #ccc;
+  height: 34px;
+  width: 90%;
+  padding: 6px 12px;
+  color: #363636;
+  background-color: #fff;
+  font-size: 14px;
+  display: block;
+  border-radius: 4px;
+  margin-top:10px;
+}
+
+.ng-dirty {
+  border:2px solid #54A844;
+}
+
+.ng-invalid {
+  border:2px solid #a94442;
+}
 
 /***********************************************************************
                             Menu Bar

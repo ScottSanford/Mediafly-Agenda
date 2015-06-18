@@ -1,8 +1,8 @@
 angular.module('agendaApp').run(function($httpBackend) {
   var agendaList = [
-              {'name': 'Introductions', 'title': 'Agenda','checked': false},
-              {'name': 'Objectives', 'title': 'Agenda','checked': false},
-              {'name': 'Next Steps', 'title': 'Agenda','checked': false}
+              {'name': 'Introductions', 'title': 'Agenda Title','checked': false},
+              {'name': 'Objectives', 'title': 'Agenda Title','checked': false},
+              {'name': 'Next Steps', 'title': 'Agenda Title','checked': false}
           ];
 
   var agendaTitle = {"title" : 'Agenda Title'};
