@@ -9,20 +9,16 @@ angular.module('agendaApp')
 
 	.controller('agendaListCtrl', function($scope, mfly, MflyDataService, EditControlsService, InitAgendaService, DialogService){
 
-        $scope.agenda = {
-            title: 'New Agenda'
-        } 
-
         function initalizeAgenda() {
             $scope.agendaList = InitAgendaService.data;
-
+            $scope.title = InitAgendaService.data[0].title;
             // agenda Title
-            MflyDataService.load('agendatitle')
-                .then(function(result){
-                    $scope.agenda.title = result.data.title;
-                }, function(result){
-                    $scope.agenda.title = "Meeting Agenda"
-                })
+            // MflyDataService.load('agendatitle')
+            //     .then(function(result){
+            //         $scope.agenda.title = result.data.title;
+            //     }, function(result){
+            //         $scope.agenda.title = "Meeting Agenda"
+            //     })
 
         }
 

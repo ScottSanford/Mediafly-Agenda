@@ -1,15 +1,24 @@
 <label>Edit Text</label>
 <form role="form" name="editAgendaText" novalidate>
+	
 	<ul>
-			<li class="edit-item-list" ng-repeat="edit in agendaList">
-					<input class="edit-item-input" name="editField" type="text" ng-model="edit.name" required>
-					<div ng-if="editAgendaText.$submitted" 
-						 ng-messages="editAgendaText.editField.$error" 
-						 class="error-messages">
+			<!-- title -->
+			<label class="title-label">Title</label>
+			<input class="edit-item-input" name="editTitleField" type="text" ng-model="title" ng-model-options="{ debounce: 250 }" required>
+					<div ng-messages="editAgendaText.editTitleField.$error" role="alert">
 				    	<span ng-message="required" class="text-validation">
 				    		Required
 				    	</span>
 				 	</div>
+			<!-- items -->
+			<label class="items-label">Items</label>
+			<li class="edit-item-list" ng-repeat="edit in agendaList">
+					<input class="edit-item-input" name="editField" type="text" ng-model="edit.name" ng-model-options="{ debounce: 250 }" required>
+					<div ng-messages="editAgendaText.editField.$error" role="alert">
+				    	<span ng-message="required" class="text-validation">
+				    		Required
+				    	</span>
+				 	</div>					
 			</li>
 	</ul>
 

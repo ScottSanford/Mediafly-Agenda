@@ -128,7 +128,7 @@ li.item {
   border-right:#999;
 }
 
-.delete {
+.save {
   border-right:0;
 }
 
@@ -138,7 +138,8 @@ li.item {
 label {
   display: inline-block;
   margin-bottom: 5px;
-  font-weight: 700;
+  font-weight: 400;
+  font-size:22px;
 }
 
 .add-agenda-item {
@@ -151,6 +152,7 @@ label {
   font-size: 14px;
   display: block;
   border-radius: 4px;
+  margin-top:15px;
 }
 
 .add-button {
@@ -221,6 +223,7 @@ label {
   color: #d96d00;
   background-color: #f5e4d1;
   border-color:#e6d3bb;
+  margin-top: 15px;
 }
 
 .edit-item-list {
@@ -245,6 +248,13 @@ label {
   color:#8a6d3b;
   position: relative;
   left:356px;
+}
+
+.title-label, .items-label {
+  display: inline-block;
+  font-weight: 700;
+  margin-top:10px;
+  font-size:18px;
 }
 
 /***********************************************************************

@@ -9,7 +9,9 @@ angular.module('agendaApp')
 		var editList = InitAgendaService.data.filter(isItemSelected);
 		$scope.agendaList = editList;
 
-		console.log(InitAgendaService.data[0].title);
+    console.log(InitAgendaService.data[0].title);
+
+		$scope.title = InitAgendaService.data[0].title;
 
         $scope.saveEditedItems = function() {
               // 2-way data binding so just closing dialog box
