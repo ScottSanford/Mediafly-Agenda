@@ -1,6 +1,5 @@
 <label>Edit Text</label>
 <form role="form" name="editAgendaText" novalidate>
-	
 	<ul>
 			<!-- title -->
 			<label class="title-label">Title</label>
@@ -11,7 +10,7 @@
 				    	</span>
 				 	</div>
 			<!-- items -->
-			<label class="items-label">Items</label>
+			<label class="items-label" ng-show="agendaList.length">Items</label>
 			<li class="edit-item-list" ng-repeat="edit in agendaList">
 					<input class="edit-item-input" name="editField" type="text" ng-model="edit.name" ng-model-options="{ debounce: 250 }" required>
 					<div ng-messages="editAgendaText.editField.$error" role="alert">

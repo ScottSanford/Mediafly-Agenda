@@ -1,0 +1,32 @@
+[
+  {
+  "title": "Mediafly Agenda",
+  "dateCreated": 1434751867, 
+  "id": null,
+  "items": [
+    {"name": "Mediafly Intro","checked": false},
+    {"name": "Mediafly Middle","checked": false},
+    {"name": "Mediafly Conclusion", "checked": false}
+  ]
+  },
+  {
+  "title": "Miller Coors Agenda",
+  "dateCreated": 1334751867, 
+  "id": null,
+  "items": [
+    {"name": "Miller Coors Intro","checked": false},
+    {"name": "Miller Coors Middle","checked": false},
+    {"name": "Miller Coors Conclusion", "checked": false}
+  ]
+  },
+  {
+  "title": "PepsiCo Agenda",
+  "dateCreated": 1234751867, 
+  "id": null,
+  "items": [
+    {"name": "PepsiCo Intro","checked": false},
+    {"name": "PepsiCo Middle","checked": false},
+    {"name": "PepsiCo Conclusion", "checked": false}
+  ]
+  }
+]

@@ -6,6 +6,10 @@
   user-select:none;
 }
 
+body {
+  color:#535353;
+}
+
 ul.agenda-list {
     list-style: none;
     padding:0;
@@ -255,6 +259,38 @@ label {
   font-weight: 700;
   margin-top:10px;
   font-size:18px;
+}
+
+.table>thead>tr>th {
+  vertical-align: bottom;
+  border-bottom: 2px solid #7d8494;
+}
+
+.table>tbody>tr>td {
+  vertical-align: middle;
+  padding:10px;
+}
+
+.saved-agendas-container {
+  width:100%;
+  min-height: 100px;
+  max-height: 500px;
+  border:2px solid #9fbe3c;
+  border-radius: 4px;
+  display: block;
+  margin: 15px auto;
+  padding:10px;
+  overflow-y:scroll;
+}
+
+.launch-agenda-btn {
+  font-size:1.5em;
+}
+
+.delete-agenda-btn {
+  position: relative;
+  left:10px;
+  font-size:1.5em;
 }
 
 /***********************************************************************

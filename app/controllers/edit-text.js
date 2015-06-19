@@ -6,10 +6,8 @@ angular.module('agendaApp')
 			return element.checked;
 		}
 
-		var editList = InitAgendaService.data.filter(isItemSelected);
+		var editList = InitAgendaService.data[0].items.filter(isItemSelected);
 		$scope.agendaList = editList;
-
-    console.log(InitAgendaService.data[0].title);
 
 		$scope.title = InitAgendaService.data[0].title;
 

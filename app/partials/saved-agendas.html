@@ -1,0 +1,23 @@
+<label>Saved Agendas</label>
+	<div class="saved-agendas-container">
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Created</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				<!-- this will be in an ngRepeat -->
+				<tr ng-repeat="agenda in agendaList | orderBy: 'dateCreated'">
+					<td>{{agenda.title}}</td>
+					<td>{{agenda.dateCreated | date: 'shortDate'}}</td>
+					<td>
+						<span class="fa fa-rocket launch-agenda-btn"></span>
+						<span class="fa fa-trash delete-agenda-btn"></span>
+					</td>
+				</tr>			
+			</tbody>
+		</table>
+	</div>

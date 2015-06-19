@@ -1,15 +1,48 @@
 angular.module('agendaApp').run(function($httpBackend) {
-  var agendaList = [
-              {'name': 'Introductions', 'title': 'Agenda Title','checked': false},
-              {'name': 'Objectives', 'title': 'Agenda Title','checked': false},
-              {'name': 'Next Steps', 'title': 'Agenda Title','checked': false}
-          ];
+  // var agendaList = [
+  //             {'name': 'Introductions', 'title': 'Agenda Title','checked': false},
+  //             {'name': 'Objectives', 'title': 'Agenda Title','checked': false},
+  //             {'name': 'Next Steps', 'title': 'Agenda Title','checked': false}
+  //         ];
 
-  var agendaTitle = {"title" : 'Agenda Title'};
+  var agendaList = [
+                      {
+                      "title": "Mediafly Agenda",
+                      "dateCreated": 1434752671392, 
+                      "id": null,
+                      "items": [
+                        {"name": "Mediafly Intro","checked": false},
+                        {"name": "Mediafly Middle","checked": false},
+                        {"name": "Mediafly Conclusion", "checked": false}
+                      ]
+                      },
+                      {
+                      "title": "Miller Coors Agenda",
+                      "dateCreated": 1334752671392, 
+                      "id": null,
+                      "items": [
+                        {"name": "Miller Coors Intro","checked": false},
+                        {"name": "Miller Coors Middle","checked": false},
+                        {"name": "Miller Coors Conclusion", "checked": false}
+                      ]
+                      },
+                      {
+                      "title": "PepsiCo Agenda",
+                      "dateCreated": 1234752671392, 
+                      "id": null,
+                      "items": [
+                        {"name": "PepsiCo Intro","checked": false},
+                        {"name": "PepsiCo Middle","checked": false},
+                        {"name": "PepsiCo Conclusion", "checked": false}
+                      ]
+                      }
+                    ]
+
 
   // returns the current list of phones
-  $httpBackend.whenGET('/data/init-data.json').respond(agendaList);
-  $httpBackend.whenGET('http://127.0.0.1:8000/data/info/-agendatitle').respond(agendaTitle);
+  // $httpBackend.whenGET('/data/init-data.json').respond(agendaList);
+  $httpBackend.whenGET('/data/test-data.json').respond(agendaList);
+ // $httpBackend.whenGET('http://127.0.0.1:8000/data/info/-agendatitle').respond(agendaTitle);
 
   // adds a new phone to the phones array
   // $httpBackend.whenPOST('/phones').respond(function(method, url, data) {

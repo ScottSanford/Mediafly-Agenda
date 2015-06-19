@@ -6,10 +6,10 @@ angular.module('agendaApp')
 	return {
 
 		// pass $scope into function arguments
-		createDialogBox: function(tmpl, ctrl) {
+		createDialogBox: function(tmpl, clName, ctrl) {
 			ngDialog.open({
                 template: tmpl,
-                className: 'ngdialog-theme-plain', 
+                className: clName, 
                 controller: ctrl
             });
 		}
