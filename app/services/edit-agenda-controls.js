@@ -1,7 +1,7 @@
 angular.module('agendaApp')
 
 
-.factory('EditControlsService',function (InitAgendaService) {
+.factory('EditControlsService',function (InitAgendaService, $routeParams) {
 
 	return {
 
@@ -11,7 +11,15 @@ angular.module('agendaApp')
 		    	name: agendaItem,
 				checked: false
 			}	
-			InitAgendaService.data[0].items.push(newItem);
+			if ($routeParams.id === undefined) {
+				InitAgendaService.data[0].items.push(newItem);
+			} else {
+				for (var i = 0; i < InitAgendaService.data.length; i++) {
+	                if ($routeParams.id === InitAgendaService.data[i].id) {
+						InitAgendaService.data[i].items.push(newItem);
+	                }
+	            }
+			}
 		},
 
 		// pass $scope into function arguments
@@ -34,7 +42,9 @@ angular.module('agendaApp')
 		},
 
 		deleteAgendaItems: function(index) {
-			InitAgendaService.data[0].items.splice(index,1);
+			for (var i = 0; i < InitAgendaService.data.length; i++) {
+				InitAgendaService.data[i].items.splice(index,1);
+            }
 		}
 
 
