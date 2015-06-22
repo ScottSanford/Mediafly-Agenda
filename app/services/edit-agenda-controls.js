@@ -6,26 +6,37 @@ angular.module('agendaApp')
 	return {
 
 		// pass $scope into function arguments
-		addAgendaItem: function(agendaItem, agendaTitle) {
-			var newAgendaItem = {
+		addAgendaItem: function(agendaItem) {
+			var newItem = {
 		    	name: agendaItem,
-				title: agendaTitle,
 				checked: false
 			}	
-			InitAgendaService.data.push(newAgendaItem);
+			InitAgendaService.data[0].items.push(newItem);
 		},
 
-		saveAndLoadAgenda: function() {
-			
+		// pass $scope into function arguments
+		saveAndLoadAgenda: function(agendaTitle, itemName) {
+			var newAgendaList = {
+				title: agendaTitle, 
+				id: '_' + Math.random().toString(36).substr(2, 9), 
+				dateCreated: Date.now(),
+				items: [{itemName}]
+			}
+			InitAgendaService.data.push(newAgendaList);
 		},
 
 		saveEditedAgendaText: function() {
 
 		}, 
 
-		deleteAgendaItems: function(index) {
+		deleteAgenda: function(index) {
 			InitAgendaService.data.splice(index,1);
+		},
+
+		deleteAgendaItems: function(index) {
+			InitAgendaService.data[0].items.splice(index,1);
 		}
+
 
 	}
 });

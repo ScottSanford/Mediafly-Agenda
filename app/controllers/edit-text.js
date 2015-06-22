@@ -2,14 +2,14 @@ angular.module('agendaApp')
 
 	.controller('EditTextCtrl', function($scope, EditControlsService, InitAgendaService){
 
-		function isItemSelected(element, index, array) {
-			return element.checked;
-		}
+    		$scope.title = InitAgendaService.data[0].title;
 
-		var editList = InitAgendaService.data[0].items.filter(isItemSelected);
-		$scope.agendaList = editList;
+        function isItemSelected(element, index, array) {
+          return element.checked;
+        }
 
-		$scope.title = InitAgendaService.data[0].title;
+        var editList = InitAgendaService.data[0].items.filter(isItemSelected);
+        $scope.agendaList = editList;
 
         $scope.saveEditedItems = function() {
               // 2-way data binding so just closing dialog box

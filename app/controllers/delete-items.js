@@ -10,8 +10,8 @@ angular.module('agendaApp')
       	$scope.agendaList = deletedList;
 
             $scope.deleteItems = function() {
-            	for (var i = InitAgendaService.data.items.length - 1; i >= 0; i--) {
-            		if (InitAgendaService.data[i].items.checked) {
+            	for (var i = InitAgendaService.data[0].items.length - 1; i >= 0; i--) {
+            		if (InitAgendaService.data[0].items[i].checked) {
             			EditControlsService.deleteAgendaItems(i,1);
             			$scope.closeThisDialog();
             		}
