@@ -7,11 +7,14 @@ angular.module('agendaApp')
         }
     })
 
-	.controller('agendaListCtrl', function($scope, $rootScope, $routeParams,  mfly, MflyDataService, EditControlsService, InitAgendaService, DialogService){
+	.controller('agendaListCtrl', function($scope, $rootScope, $routeParams, $location, mfly, MflyDataService, EditControlsService, InitAgendaService, NewAgendaService, DialogService){
 
         function initalizeAgenda() {
-            $scope.agendaList = InitAgendaService.data[0].items;
-            $scope.title = InitAgendaService.data[0].title;
+            $scope.newAgenda = {
+                title: NewAgendaService.title
+            }
+            $scope.agendaList = NewAgendaService.items;
+            $routeParams.id = undefined;
         }
 
         if ($routeParams.id === undefined) {
@@ -20,7 +23,9 @@ angular.module('agendaApp')
             for (var i = 0; i < InitAgendaService.data.length; i++) {
                 if ($routeParams.id === InitAgendaService.data[i].id) {
                     $scope.agendaList = InitAgendaService.data[i].items;
-                    $scope.title = InitAgendaService.data[i].title;
+                    $scope.newAgenda = {
+                        title: InitAgendaService.data[i].title
+                    }
                 }
             }
         }
@@ -41,6 +46,12 @@ angular.module('agendaApp')
         $scope.saveAgendaToTemplate = function() {
             MflyDataService.save('agendaList', JSON.stringify($scope.agendaList), false);         
             MflyDataService.save('agendaTitle', $scope.agenda.title, false);         
+        }
+
+        // new agenda
+        $rootScope.createNewAgenda = function() {
+            initalizeAgenda();
+            $location.url('/');
         }
 
         // load button
@@ -66,20 +77,31 @@ angular.module('agendaApp')
         };
 
         $scope.editDialogBox = function(item){
-             DialogService.createDialogBox('partials/edit-text.html', 'ngdialog-theme-plain', 'EditTextCtrl');
+             DialogService.createDialogBox('partials/edit-text.html', 'ngdialog-theme-plain', 'EditTextCtrl', $scope);
         };
 
         $scope.deleteDialogBox = function() { 
-                var itemsArray = InitAgendaService.data[0].items;
-                for (i = 0; i < itemsArray.length; i++) {
-                    if (itemsArray[i].checked) {
+            if ($routeParams.id === undefined) { 
+                var newAgendaItemArray = NewAgendaService.items;
+                for (i = 0; i < newAgendaItemArray.length; i++) {
+                    if (newAgendaItemArray[i].checked) {
                         DialogService.createDialogBox('partials/delete-items.html', 'ngdialog-theme-plain', 'DeleteItemCtrl');
                     }
                 }
+            } else {
+                  for (var i = 0; i < InitAgendaService.data.length; i++) {
+                        if ($routeParams.id === InitAgendaService.data[i].id) {
+                            if (InitAgendaService.data[i].items[i].checked === true) {
+                                DialogService.createDialogBox('partials/delete-items.html', 'ngdialog-theme-plain', 'DeleteItemCtrl');
+                            }
+
+                        }
+                  }
+            }
         };
 
         $scope.saveDialogBox = function() { 
-                DialogService.createDialogBox('partials/save-load-agenda.html', 'ngdialog-theme-plain', 'SavedAgendasCtrl');
+                DialogService.createDialogBox('partials/save-load-agenda.html', 'ngdialog-theme-plain', 'SavedAgendasCtrl', $scope);
         };
 
         // AGENDA MENU END

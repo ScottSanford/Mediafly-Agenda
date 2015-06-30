@@ -283,7 +283,7 @@ label {
   overflow-y:scroll;
 }
 
-.launch-agenda-btn {
+.launch-agenda-btn, .delete-agenda-btn {
   font-size:1.5em;
   color:#535353;
 }

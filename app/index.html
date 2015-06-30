@@ -27,11 +27,14 @@
 
 	<nav id="menu">
 	        <ul>
-	            <li class="menu-edit" ng-click="showEditButtons=!showEditButtons">
-	              <i class="fa fa-pencil"></i> Edit
+	        	<li class="menu-edit" ng-click="createNewAgenda()">
+	              <i class="fa fa-plus"></i> New Agenda
 	            </li>
 	            <li class="menu-load" ng-click="savedAgendasDialogBox()">
 	              <i class="fa fa-list-ul"></i> Saved Agendas
+	            </li>
+	            <li class="menu-edit" ng-click="showEditButtons=!showEditButtons">
+	              <i class="fa fa-pencil"></i> Edit
 	            </li>
 	            <li class="menu-close" ng-click="closeMenu()">
 	              <i class="fa fa-times"></i> Close 
@@ -79,6 +82,7 @@
 	<script src="services/mflyCommands-service.js"></script>
 	<script src="services/edit-agenda-controls.js"></script>
 	<script src="services/init-agenda.js"></script>
+	<script src="services/new-agenda.js"></script>
 	<script src="services/dialog-service.js"></script>
 	<script src="backend/init-data.js"></script>
 	<!-- controllers -->
@@ -87,6 +91,7 @@
 	<script src="controllers/delete-items.js"></script>
 	<script src="controllers/edit-text.js"></script>
 	<script src="controllers/saved-agendas.js"></script>
+	<script src="controllers/load-agenda.js"></script>
 	<script src="controllers/double-check.js"></script>
 	<!-- // <script src="http://10.0.0.112:8080/target/target-script-min.js"></script> -->
 	<script type="text/javascript">

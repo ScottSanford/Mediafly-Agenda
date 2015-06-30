@@ -14,8 +14,8 @@
 					<td>{{agenda.title}}</td>
 					<td>{{agenda.dateCreated | date: 'shortDate'}}</td>
 					<td>
-						<a ng-href="#/{{agenda.id}}"><span class="fa fa-rocket launch-agenda-btn"></span></a>
-						<span class="fa fa-trash delete-agenda-btn" ng-click="deleteAgendaDialogBox()"></span>
+						<a ng-href="#/{{agenda.id}}"><span class="fa fa-rocket launch-agenda-btn" ng-click="closeDialogBox()"></span></a>
+						<a ng-href="#/{{agenda.id}}"><span class="fa fa-trash delete-agenda-btn" ng-click="deleteAgendaDialogBox()"></span></a>
 					</td>
 				</tr>			
 			</tbody>

@@ -5,7 +5,7 @@ angular.module('agendaApp')
             	if ($scope.addAgendaItem.$valid) {
 	                EditControlsService.addAgendaItem($scope.newItem);
 	                $scope.newItem = '';
-	                $scope.closeThisDialog();              	
+	                $scope.closeThisDialog();          	
               	}
             };
 	});

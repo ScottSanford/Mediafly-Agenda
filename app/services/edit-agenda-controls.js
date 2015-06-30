@@ -1,7 +1,7 @@
 angular.module('agendaApp')
 
 
-.factory('EditControlsService',function (InitAgendaService, $routeParams) {
+.factory('EditControlsService',function (InitAgendaService, NewAgendaService, $routeParams) {
 
 	return {
 
@@ -12,7 +12,7 @@ angular.module('agendaApp')
 				checked: false
 			}	
 			if ($routeParams.id === undefined) {
-				InitAgendaService.data[0].items.push(newItem);
+				NewAgendaService.items.push(newItem);
 			} else {
 				for (var i = 0; i < InitAgendaService.data.length; i++) {
 	                if ($routeParams.id === InitAgendaService.data[i].id) {
@@ -30,6 +30,7 @@ angular.module('agendaApp')
 				dateCreated: Date.now(),
 				items: [{itemName}]
 			}
+
 			InitAgendaService.data.push(newAgendaList);
 		},
 
@@ -41,10 +42,21 @@ angular.module('agendaApp')
 			InitAgendaService.data.splice(index,1);
 		},
 
-		deleteAgendaItems: function(index) {
-			for (var i = 0; i < InitAgendaService.data.length; i++) {
-				InitAgendaService.data[i].items.splice(index,1);
-            }
+		deleteAgendaItems: function() {
+			if ($routeParams.id === undefined) {
+				for (var i = 0; i < NewAgendaService.items.length; i++) {
+					if (NewAgendaService.items[i].checked) {
+						NewAgendaService.items.splice(i, 1);
+						console.log(NewAgendaService.items);
+					}
+				}
+			} else {
+				for (var i = 0; i < InitAgendaService.data.length; i++) {
+					if ($routeParams.id === InitAgendaService.data[i].id) {
+						InitAgendaService.data[i].items.splice(i,1);
+					}	
+	            }				
+			}
 		}
 
 

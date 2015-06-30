@@ -38,11 +38,10 @@ angular.module('agendaApp').run(function($httpBackend) {
                       }
                     ]
 
-
   // returns the current list of phones
   // $httpBackend.whenGET('/data/init-data.json').respond(agendaList);
   $httpBackend.whenGET('/data/test-data.json').respond(agendaList);
- // $httpBackend.whenGET('http://127.0.0.1:8000/data/info/-agendatitle').respond(agendaTitle);
+  // $httpBackend.whenGET('directives/side-menu.html').respond(agendaTitle);
 
   // adds a new phone to the phones array
   // $httpBackend.whenPOST('/phones').respond(function(method, url, data) {
