@@ -36,6 +36,14 @@ angular.module('agendaApp').factory("mfly", function($q) {
                             deferred.resolve(data);
                         })
                         return deferred.promise;
+                }, 
+
+                putValue: function(key, value) {
+                    mflyCommands.putValue(key, value);
+                }, 
+
+                getValue: function(key) {
+                   return mflyCommands.getValue(key);
                 }
 
             }

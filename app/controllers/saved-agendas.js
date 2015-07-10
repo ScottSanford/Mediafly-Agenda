@@ -1,39 +1,32 @@
 angular.module('agendaApp')
 
-	.controller('SavedAgendasCtrl', function($scope, $location, $routeParams, EditControlsService, InitAgendaService, NewAgendaService, DialogService){
+	.controller('SavedAgendasCtrl', function($scope, $rootScope, $location, $routeParams, EditControlsService, InitAgendaService, NewAgendaService, ngDialog, mfly){
 
-        if ($routeParams.id === undefined) {
-            $scope.newAgenda = {
-                title: $scope.newAgenda.title
-            }
-        } else {
-            for (var i = 0; i < InitAgendaService.data.length; i++) {
-                if ($routeParams.id === InitAgendaService.data[i].id) {
-                    $scope.title = InitAgendaService.data[i].title;         
+        mfly.getValue('agendaList').then(function(response){
+            $scope.agendaList = JSON.parse(response);
+        });
+
+        $scope.deleteAgendaDialogBox = function(agenda) {
+            if ($routeParams.id === agenda.id) {
+                $scope.title = agenda.title;
+            };
+
+            // combine everything into one controller
+            $scope.deleteAgendaFromList = function() {
+                if ($routeParams.id === agenda.id) {
+                    var index = $scope.agendaList.indexOf(agenda);
+                    EditControlsService.deleteAgenda(index,1);
+                    // $scope.closeThisDialog();
                 }
             }
-        }
-        $scope.agendaList = InitAgendaService.data;
-
-        $scope.saveAgendatoList = function() {
-            if ($routeParams.id === undefined) {
-                EditControlsService.saveAndLoadAgenda($scope.newAgenda.title, NewAgendaService.items);
-                DialogService.createDialogBox('partials/load-agenda.html', 'ngdialog-theme-plain', 'LoadAgendaCtrl');
-            } else {
-                for (var i = 0; i < InitAgendaService.data.length; i++) {
-                    if ($routeParams.id === InitAgendaService.data[i].id) {
-                        EditControlsService.saveAndLoadAgenda(InitAgendaService.data[i].title, InitAgendaService.data[i].items)
-                        DialogService.createDialogBox('partials/load-agenda.html', 'ngdialog-theme-plain', 'LoadAgendaCtrl');
-                    }
-                }
-            }
-        	console.log(InitAgendaService.data);
-        	$scope.closeThisDialog();
+            
+         	ngDialog.openConfirm({
+                template: 'partials/double-check-dialogbox.html', 
+                className: 'ngdialog-theme-plain', 
+                scope: $scope
+            });
         }
 
-        $scope.deleteAgendaDialogBox = function() {
-         	DialogService.createDialogBox('partials/double-check-dialogbox.html', 'ngdialog-theme-plain', 'DoubleCheckCtrl');
-        }
 
         $scope.closeDialogBox = function() {
             $scope.closeThisDialog();

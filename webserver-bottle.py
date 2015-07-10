@@ -313,7 +313,8 @@ def hearbeat():
 #################
 @get('/')
 def index():
-	return static_file('index.html', root='app/')
+	resp = static_file("index.html", root="app/")
+	return resp
 
 @get('/partials/<filename:re:.*\.html>')
 def partials(filename):

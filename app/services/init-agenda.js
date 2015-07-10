@@ -1,23 +1,29 @@
 angular.module('agendaApp')
 
 
-.factory('InitAgendaService',function ($http , $q) {
+.factory('InitAgendaService',function ($q, mfly) {
 
-	var self = {};
-	self.get = function() {
+	  var self = {};
+
+	  self.get = function() {
+
 		var deferred = $q.defer();
 
-   //      $http.get('/data/init-data.json').success(function (data) {
-   //      	self.data = data;
-			// deferred.resolve(data);
-   //      });
-        $http.get('/data/test-data.json').success(function (data) {
-        	self.data = data;
-			deferred.resolve(data);
-        });
-    
-        return deferred.promise; 
-	}
+    mfly.getValue('agendalist').then(function (data) {
 
-	return self;
+        self.data = data;
+			  deferred.resolve(data);
+
+    }, function(error){
+
+        self.data = [];
+        deferred.resolve([]);
+
+    });
+    
+    return deferred.promise; 
+	  }
+
+	  return self;
+    
 });

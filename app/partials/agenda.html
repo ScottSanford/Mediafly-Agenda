@@ -23,6 +23,6 @@
 <div class="btn-group edit-buttons" ng-show="showEditButtons">
     <button class="btn btn-default edit-buttons add"  ng-click="addDialogBox()"><span class="fa fa-plus"></span></button>
     <button class="btn btn-default edit-buttons edit" ng-click="editDialogBox()"><span class="fa fa-pencil"></span></button>
-    <button class="btn btn-default edit-buttons delete" ng-click="deleteDialogBox($index)"><span class="fa fa-trash"></span></button>
+    <button class="btn btn-default edit-buttons delete" ng-click="deleteDialogBox((agendaList | filter:{checked:true}))"><span class="fa fa-trash"></span></button>
     <button class="btn btn-default edit-buttons save" ng-click="saveDialogBox()"><span class="fa fa-floppy-o"></span></button>
 </div>

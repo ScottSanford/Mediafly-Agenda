@@ -1,57 +1,51 @@
 angular.module('agendaApp')
 
-    .filter('removePlusSign' , function(){
-        return function(name) {
-            var text = item.replace("+", " ");
-            return String(text);
-        }
-    })
-
-	.controller('agendaListCtrl', function($scope, $rootScope, $routeParams, $location, mfly, MflyDataService, EditControlsService, InitAgendaService, NewAgendaService, DialogService){
+	.controller('agendaListCtrl', function($scope, $filter, $rootScope, $routeParams, $location, $window, $route, mfly, MflyDataService, EditControlsService, InitAgendaService, NewAgendaService, DialogService, ngDialog){
 
         function initalizeAgenda() {
-            $scope.newAgenda = {
-                title: NewAgendaService.title
-            }
-            $scope.agendaList = NewAgendaService.items;
-            $routeParams.id = undefined;
-        }
+            mfly.getValue('agendaList').then(function(response){
+                var data = JSON.parse(response);
+                console.log(data);
 
-        if ($routeParams.id === undefined) {
-            initalizeAgenda();
-        } else {
-            for (var i = 0; i < InitAgendaService.data.length; i++) {
-                if ($routeParams.id === InitAgendaService.data[i].id) {
-                    $scope.agendaList = InitAgendaService.data[i].items;
-                    $scope.newAgenda = {
-                        title: InitAgendaService.data[i].title
+                for (var i = 0; i < data.length; i++) {
+
+                    if ($routeParams.id === undefined) {
+
+                            $scope.newAgenda = {
+                                title: NewAgendaService.title
+                            }
+
+                            $scope.agendaList = NewAgendaService.items;
+
+
+                            $routeParams.id = undefined;
+
+                    } 
+
+                    else if ($routeParams.id === data[i].id) {
+                        
+                        $scope.newAgenda = {
+                            title: data[i].title
+                        }
+                        
+                        $scope.agendaList = data[i].items[i].itemName;              
                     }
                 }
-            }
+            });
         }
 
-        // AGENDA MENU START
-        // open menu 
+        initalizeAgenda();
+
+
         $scope.openMenu = function() {
             $scope.showActions = true;
-        }
-
-        /** Save the agenda with AJAX.**/
-        $scope.saveAgenda = function(useNamespace) {
-            useNamespace = typeof useNamespace !== 'undefined' ? useNamespace : true;
-            MflyDataService.save('agendaList', JSON.stringify($scope.agendaList), useNamespace);
-        }
-
-        // save button
-        $scope.saveAgendaToTemplate = function() {
-            MflyDataService.save('agendaList', JSON.stringify($scope.agendaList), false);         
-            MflyDataService.save('agendaTitle', $scope.agenda.title, false);         
         }
 
         // new agenda
         $rootScope.createNewAgenda = function() {
             initalizeAgenda();
-            $location.url('/');
+            $window.location.href = 'http://127.0.0.1:8000/';
+            // $window.location.href = 'mfly://';
         }
 
         // load button
@@ -80,42 +74,56 @@ angular.module('agendaApp')
              DialogService.createDialogBox('partials/edit-text.html', 'ngdialog-theme-plain', 'EditTextCtrl', $scope);
         };
 
-        $scope.deleteDialogBox = function() { 
-            if ($routeParams.id === undefined) { 
-                var newAgendaItemArray = NewAgendaService.items;
-                for (i = 0; i < newAgendaItemArray.length; i++) {
-                    if (newAgendaItemArray[i].checked) {
-                        DialogService.createDialogBox('partials/delete-items.html', 'ngdialog-theme-plain', 'DeleteItemCtrl');
-                    }
-                }
-            } else {
-                  for (var i = 0; i < InitAgendaService.data.length; i++) {
-                        if ($routeParams.id === InitAgendaService.data[i].id) {
-                            if (InitAgendaService.data[i].items[i].checked === true) {
-                                DialogService.createDialogBox('partials/delete-items.html', 'ngdialog-theme-plain', 'DeleteItemCtrl');
-                            }
+        $scope.deleteDialogBox = function(item) { 
+            console.log(item);
 
+            var newAgendaItemArray = NewAgendaService.items;
+
+            $scope.delagendaList = item;
+
+            if (areItemsChecked(newAgendaItemArray)) {
+
+                ngDialog.openConfirm({
+                    template: 'partials/delete-items.html', 
+                    className: 'ngdialog-theme-plain', 
+                    scope: $scope, 
+                    controller: function($scope) {
+                        $scope.closeDialogBox = function() {
+                            console.log('clicked');
+                            $scope.closeThisDialog();
                         }
-                  }
-            }
+                    }
+                });
+
+                $scope.deleteItems = function() {
+                    $scope.agendaList = $filter('filter')($scope.agendaList, {checked: false});
+                    console.log($scope.agendaList);
+                    ngDialog.closeAll();
+                }
+
+
+            }      
+
+
         };
+
+        $scope.closeDialogBox = function() {
+            console.log('clicked');
+            $scope.closeThisDialog();
+        }
+
+        function areItemsChecked(array) {
+            for (var i = 0; i < array.length; i++) {
+                if (array[i].checked) {
+                    return true;
+                }
+            }
+            return false;
+        }
 
         $scope.saveDialogBox = function() { 
-                DialogService.createDialogBox('partials/save-load-agenda.html', 'ngdialog-theme-plain', 'SavedAgendasCtrl', $scope);
+                DialogService.createDialogBox('partials/save-load-agenda.html', 'ngdialog-theme-plain', 'SaveAgendaCtrl', $scope);
         };
-
-        // AGENDA MENU END
-        $scope.saveAndCloseEdit = function() {
-            saveAgendatotemplate();
-        }
-
-        // trash dialog 
-
-        // remove item from agenda list
-        $scope.removeItem = function(index) {
-            // var item = $scope.agendaList[index];
-            $scope.agendaList.splice(index, 1);
-        }
 
 
 	})

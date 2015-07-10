@@ -30,20 +30,18 @@
 	        	<li class="menu-edit" ng-click="createNewAgenda()">
 	              <i class="fa fa-plus"></i> New Agenda
 	            </li>
+	            <li class="menu-edit" ng-click="showEditButtons=!showEditButtons">
+	              <i class="fa fa-pencil"></i> Edit
+	            </li>
 	            <li class="menu-load" ng-click="savedAgendasDialogBox()">
 	              <i class="fa fa-list-ul"></i> Saved Agendas
 	            </li>
-	            <li class="menu-edit" ng-click="showEditButtons=!showEditButtons">
-	              <i class="fa fa-pencil"></i> Edit
+				<li class="menu-annotations">
+	              <i class="fa fa-pencil-square-o"></i> Annotations
 	            </li>
 	            <li class="menu-close" ng-click="closeMenu()">
 	              <i class="fa fa-times"></i> Close 
 	            </li>
-
-				<li class="menu-annotations">
-	              <i class="fa fa-pencil-square-o"></i> Annotations
-	            </li>
-
 	        </ul>
 	</nav>
 
@@ -72,9 +70,8 @@
 	<script src="components/angular-touch/angular-touch.js"></script>
 	<script src="components/angular-hammer/angular-hammer.js"></script>
 	<!-- other scripts -->
-	<script src="lib/mflyCommands.js"></script>
+	<script src="components/mfly-commands/src/mflyCommands.js"></script>
 	<!-- directives -->	
-
 	<!-- main script -->
 	<script src="main.js"></script>
 	<!-- services -->
@@ -88,12 +85,13 @@
 	<!-- controllers -->
 	<script src="controllers/agenda.js"></script>
 	<script src="controllers/add-item.js"></script>
-	<script src="controllers/delete-items.js"></script>
 	<script src="controllers/edit-text.js"></script>
+	<script src="controllers/save-agenda-to-list.js"></script>
 	<script src="controllers/saved-agendas.js"></script>
 	<script src="controllers/load-agenda.js"></script>
 	<script src="controllers/double-check.js"></script>
 	<!-- // <script src="http://10.0.0.112:8080/target/target-script-min.js"></script> -->
+	
 	<script type="text/javascript">
 	$(document).ready(function(){
 			// Uses document because document will be topmost level in bubbling

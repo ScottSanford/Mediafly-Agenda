@@ -1,23 +1,21 @@
 angular.module('agendaApp')
 
-	.controller('DoubleCheckCtrl', function($scope, $routeParams, EditControlsService, InitAgendaService){
+	.controller('DoubleCheckCtrl', function($scope, $routeParams, EditControlsService, InitAgendaService, DialogService){
 
 		for (var i = 0; i < InitAgendaService.data.length; i++) {
+          if ($routeParams.id === InitAgendaService.data[i].id) {
             $scope.title = InitAgendaService.data[i].title;
-        }
+          }
+    }
 
-		$scope.deleteAgendaFromList = function(index) {
-            if ($routeParams.id === undefined) {
-              console.log($routeParams.id);
-               EditControlsService.deleteAgenda(index,1);
-            } else {
-              for (var i = 0; i < InitAgendaService.data.length; i++) {
-                if ($routeParams.id === InitAgendaService.data[i].id) {
-                    EditControlsService.deleteAgenda(i,1);
-                }
-              }
-            }
+		$scope.deleteAgendaFromList = function() {
+        for (var i = 0; i < InitAgendaService.data.length; i++) {
+          if ($routeParams.id === InitAgendaService.data[i].id) {
+            EditControlsService.deleteAgenda(i,1);
             $scope.closeThisDialog();
+            break;
+          }
+        }
 		}
 
         $scope.closeDialogBox = function() {

@@ -1,9 +1,4 @@
 angular.module('agendaApp').run(function($httpBackend) {
-  // var agendaList = [
-  //             {'name': 'Introductions', 'title': 'Agenda Title','checked': false},
-  //             {'name': 'Objectives', 'title': 'Agenda Title','checked': false},
-  //             {'name': 'Next Steps', 'title': 'Agenda Title','checked': false}
-  //         ];
 
   var agendaList = [
                       {
@@ -38,10 +33,11 @@ angular.module('agendaApp').run(function($httpBackend) {
                       }
                     ]
 
+
+
   // returns the current list of phones
-  // $httpBackend.whenGET('/data/init-data.json').respond(agendaList);
-  $httpBackend.whenGET('/data/test-data.json').respond(agendaList);
-  // $httpBackend.whenGET('directives/side-menu.html').respond(agendaTitle);
+
+  $httpBackend.whenGET('/data/test-data.json').passThrough();
 
   // adds a new phone to the phones array
   // $httpBackend.whenPOST('/phones').respond(function(method, url, data) {

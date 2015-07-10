@@ -1,0 +1,38 @@
+{
+  "name": "mfly-commands",
+  "version": "1.5.2",
+  "authors": [
+    "nachiket mehta <nmehta@mediafly.com>",
+    "jason shah <jshah@mediafly.com>"
+  ],
+  "description": "A set of commands for interactives to interface with apps",
+  "moduleType": [
+    "globals"
+  ],
+  "keywords": [
+    "mflycommands",
+    "mediafly"
+  ],
+  "license": "MIT",
+  "homepage": "http://devdocs.mediafly.com/interactives/",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jQuery": "~1.11.0"
+  },
+  "_release": "1.5.2",
+  "_resolution": {
+    "type": "version",
+    "tag": "v1.5.2",
+    "commit": "4284306052094f037cfc09cd3ac22792a426039e"
+  },
+  "_source": "git://github.com/Mediafly/mflyCommands.git",
+  "_target": "~1.5.2",
+  "_originalSource": "mfly-commands",
+  "_direct": true
+}
