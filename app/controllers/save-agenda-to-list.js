@@ -22,7 +22,8 @@ angular.module('agendaApp')
 
             // save for local storage
             var savedAgendaList = InitAgendaService.data;
-            mfly.putValue('agendaList', JSON.stringify(savedAgendaList));
+            console.log(savedAgendaList);
+            mfly.putValue('agendalist', JSON.stringify(savedAgendaList));
 
             // open Load Agenda Modal
             DialogService.createDialogBox('partials/load-agenda.html', 'ngdialog-theme-plain', 'LoadAgendaCtrl');

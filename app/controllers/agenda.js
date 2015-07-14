@@ -1,13 +1,8 @@
 angular.module('agendaApp')
 
-	.controller('agendaListCtrl', function($scope, $filter, $rootScope, $routeParams, $location, $window, $route, mfly, MflyDataService, EditControlsService, InitAgendaService, NewAgendaService, DialogService, ngDialog){
+	.controller('agendaListCtrl', function($scope, $filter, $rootScope, $routeParams, $location, $window, $route, mfly, MflyDataService, EditControlsService, InitAgendaService, NewAgendaService, DialogService, ngDialog, agendaData){
 
         function initalizeAgenda() {
-            mfly.getValue('agendaList').then(function(response){
-                var data = JSON.parse(response);
-                console.log(data);
-
-                for (var i = 0; i < data.length; i++) {
 
                     if ($routeParams.id === undefined) {
 
@@ -18,20 +13,21 @@ angular.module('agendaApp')
                             $scope.agendaList = NewAgendaService.items;
 
 
-                            $routeParams.id = undefined;
-
+                            $routeParams.id = undefined;           
                     } 
 
-                    else if ($routeParams.id === data[i].id) {
-                        
+                    else {
+                        var launchSavedAgenda = agendaData.filter(function(item) {
+                            return item.id === $routeParams.id;
+                        });
+
                         $scope.newAgenda = {
-                            title: data[i].title
+                            title: launchSavedAgenda[0].title
                         }
-                        
-                        $scope.agendaList = data[i].items[i].itemName;              
-                    }
-                }
-            });
+                        console.log(launchSavedAgenda);
+                        $scope.agendaList = launchSavedAgenda[0].items[0].items;  
+                    } 
+                    InitAgendaService.data = agendaData;            
         }
 
         initalizeAgenda();
@@ -43,9 +39,9 @@ angular.module('agendaApp')
 
         // new agenda
         $rootScope.createNewAgenda = function() {
+            // $window.location.href = 'http://127.0.0.1:8000/';
+            $window.location.href = 'mfly://';
             initalizeAgenda();
-            $window.location.href = 'http://127.0.0.1:8000/';
-            // $window.location.href = 'mfly://';
         }
 
         // load button
@@ -55,7 +51,6 @@ angular.module('agendaApp')
 
         $scope.loadAgendaFromTemplate = function() {
             MflyDataService.load('agendaList', false).then(function(result){
-                console.log(result.data);
                 $scope.agendaList = result.data;
                 $scope.saveAgenda();
             });
@@ -75,12 +70,9 @@ angular.module('agendaApp')
         };
 
         $scope.deleteDialogBox = function(item) { 
-            console.log(item);
-
             var newAgendaItemArray = NewAgendaService.items;
 
-            $scope.delagendaList = item;
-
+            // open dialog if an item is checked
             if (areItemsChecked(newAgendaItemArray)) {
 
                 ngDialog.openConfirm({
@@ -88,29 +80,30 @@ angular.module('agendaApp')
                     className: 'ngdialog-theme-plain', 
                     scope: $scope, 
                     controller: function($scope) {
+                        $scope.delagendaList = item;
                         $scope.closeDialogBox = function() {
-                            console.log('clicked');
                             $scope.closeThisDialog();
-                        }
+                        }   
                     }
                 });
 
-                $scope.deleteItems = function() {
-                    $scope.agendaList = $filter('filter')($scope.agendaList, {checked: false});
-                    console.log($scope.agendaList);
+                $scope.deleteItems = function() {   
+                    var wantedItems = [];
+
+                    wantedItems = NewAgendaService.items.filter(function(item){
+                        return !item.checked;
+                    });
+
+                    $scope.agendaList = wantedItems;
+                    NewAgendaService.items = wantedItems;
+
                     ngDialog.closeAll();
-                }
+                } 
+            }  
 
-
-            }      
 
 
         };
-
-        $scope.closeDialogBox = function() {
-            console.log('clicked');
-            $scope.closeThisDialog();
-        }
 
         function areItemsChecked(array) {
             for (var i = 0; i < array.length; i++) {
@@ -120,6 +113,11 @@ angular.module('agendaApp')
             }
             return false;
         }
+
+        $scope.closeDialogBox = function() {
+            $scope.closeThisDialog();
+        }
+
 
         $scope.saveDialogBox = function() { 
                 DialogService.createDialogBox('partials/save-load-agenda.html', 'ngdialog-theme-plain', 'SaveAgendaCtrl', $scope);

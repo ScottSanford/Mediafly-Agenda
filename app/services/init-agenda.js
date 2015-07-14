@@ -1,7 +1,7 @@
 angular.module('agendaApp')
 
 
-.factory('InitAgendaService',function ($q, mfly) {
+.factory('InitAgendaService',function ($q, mfly, NewAgendaService) {
 
 	  var self = {};
 
@@ -11,8 +11,8 @@ angular.module('agendaApp')
 
     mfly.getValue('agendalist').then(function (data) {
 
-        self.data = data;
-			  deferred.resolve(data);
+        self.data = JSON.parse(data);
+			  deferred.resolve(JSON.parse(data));
 
     }, function(error){
 

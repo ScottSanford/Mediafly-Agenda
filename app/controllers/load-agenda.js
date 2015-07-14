@@ -4,7 +4,7 @@ angular.module('agendaApp')
 
         $scope.loadAgenda = function() {
         	
-            mfly.getValue('agendaList').then(function(response){
+            mfly.getValue('agendalist').then(function(response){
                     var data = JSON.parse(response);
 
                     for (var i = 0; i < data.length; i++) {
