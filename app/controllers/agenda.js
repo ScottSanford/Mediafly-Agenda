@@ -24,7 +24,7 @@ angular.module('agendaApp')
                         $scope.newAgenda = {
                             title: launchSavedAgenda[0].title
                         }
-                        console.log(launchSavedAgenda);
+
                         $scope.agendaList = launchSavedAgenda[0].items[0].items;  
                     } 
                     InitAgendaService.data = agendaData;            

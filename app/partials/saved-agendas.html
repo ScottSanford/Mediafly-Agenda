@@ -10,7 +10,7 @@
 			</thead>
 			<tbody>
 				<!-- this will be in an ngRepeat -->
-				<tr ng-repeat="agenda in savedAgendas | orderBy: 'dateCreated'">
+				<tr ng-repeat="agenda in savedAgendas track by $index | orderBy: 'dateCreated'">
 					<td>{{agenda.title}}</td>
 					<td>{{agenda.dateCreated | date: 'shortDate'}}</td>
 					<td>

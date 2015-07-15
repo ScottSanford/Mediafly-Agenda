@@ -25,10 +25,18 @@ angular.module('agendaApp')
 		    } 
 
 		    else {
-		    	mfly.getValue('agendalist').then(function(response){
-		            var data = JSON.parse(response);
-		            console.log("Saved Agendas :: " , data);
-		    	});
+		    	// mfly.getValue('agendalist').then(function(response){
+		     //        var data = JSON.parse(response);
+		     //        console.log("Saved Agendas :: " , data);
+		    	// });
+				for (var i = 0; i < InitAgendaService.data.length; i++) {
+					if ($routeParams.id === InitAgendaService.data[i].id) {
+						// InitAgendaService.data[i].push(items);
+						var itemsArray = InitAgendaService.data[i].items[0].items;
+
+						itemsArray.push(items);
+					}
+				}
 		    }
 
 		},
