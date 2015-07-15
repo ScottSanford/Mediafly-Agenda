@@ -22,13 +22,13 @@ angular.module('agendaApp')
 
             // save for local storage
             var savedAgendaList = InitAgendaService.data;
-            console.log(savedAgendaList);
+
             mfly.putValue('agendalist', JSON.stringify(savedAgendaList));
 
             // open Load Agenda Modal
             DialogService.createDialogBox('partials/load-agenda.html', 'ngdialog-theme-plain', 'LoadAgendaCtrl');
 
-        	console.log("InitAgendaService.data :: " , InitAgendaService.data);
+        	console.log("Saved Agendas ==> " , InitAgendaService.data);
         	$scope.closeThisDialog();
         }
 

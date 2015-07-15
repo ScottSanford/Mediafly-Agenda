@@ -12,8 +12,8 @@ angular.module('agendaApp')
 
                             $scope.agendaList = NewAgendaService.items;
 
-
                             $routeParams.id = undefined;           
+
                     } 
 
                     else {
@@ -39,8 +39,8 @@ angular.module('agendaApp')
 
         // new agenda
         $rootScope.createNewAgenda = function() {
-            // $window.location.href = 'http://127.0.0.1:8000/';
-            $window.location.href = 'mfly://';
+            $window.location.href = 'http://localhost:8000/';
+            // $window.location.href = 'mfly://';
             initalizeAgenda();
         }
 

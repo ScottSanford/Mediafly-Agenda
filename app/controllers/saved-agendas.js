@@ -2,9 +2,16 @@ angular.module('agendaApp')
 
 	.controller('SavedAgendasCtrl', function($scope, $rootScope, $location, $routeParams, EditControlsService, InitAgendaService, NewAgendaService, ngDialog, mfly){
 
-        mfly.getValue('agendalist').then(function(response){
-            $scope.agendaList = JSON.parse(response);
-        });
+        // apparently this has stopped working and now have to use InitAgendaService.data to $scope...weird
+        // mfly.getValue('agendalist').then(function(response){
+
+        //     var savedAgendaList = JSON.parse(response);
+
+        //     $scope.savedAgendas = savedAgendaList;
+
+        // });
+
+        $scope.savedAgendas = InitAgendaService.data;
 
         $scope.deleteAgendaDialogBox = function(agenda) {
             if ($routeParams.id === agenda.id) {
@@ -14,7 +21,7 @@ angular.module('agendaApp')
             // combine everything into one controller
             $scope.deleteAgendaFromList = function() {
                 if ($routeParams.id === agenda.id) {
-                    var index = $scope.agendaList.indexOf(agenda);
+                    var index = $scope.savedAgendas.indexOf(agenda);
 
                     var unDeletedAgendas = [];
                     unDeletedAgendas = InitAgendaService.data.filter(function(item){
@@ -27,7 +34,7 @@ angular.module('agendaApp')
 
                     // update $scope
                     console.log(unDeletedAgendas);
-                    $scope.agendaList = unDeletedAgendas;
+                    $scope.savedAgendas = unDeletedAgendas;
 
                     $location.url('/');
 

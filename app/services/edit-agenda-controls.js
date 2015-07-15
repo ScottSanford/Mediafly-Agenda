@@ -16,24 +16,21 @@ angular.module('agendaApp')
 				checked: false
 			}	
 
-			mfly.getValue('agendalist').then(function(response){
-	            var data = JSON.parse(response);
-	            console.log("Saved Agendas :: " , data);
 
-	            // new agenda
-                if ($routeParams.id === undefined) {
-					NewAgendaService.items.push(items);
-					console.log("init" , NewAgendaService.items);
-			    } 
+	        // new agenda
+            if ($routeParams.id === undefined) {
+            	
+				NewAgendaService.items.push(items);
+				
+		    } 
 
-			    // saved agenda
-			    for (var i = 0; i < data.length; i++) {
-					if ($routeParams.id === data[i].id) {
-		                InitAgendaService.data[i].items.push(items);    
-		                console.log("after adding item :: " , data);       
-		            }		    	
-			    }
-        });
+		    else {
+		    	mfly.getValue('agendalist').then(function(response){
+		            var data = JSON.parse(response);
+		            console.log("Saved Agendas :: " , data);
+		    	});
+		    }
+
 		},
 
 		// pass $scope into function arguments

@@ -25,8 +25,9 @@ angular.module('agendaApp')
         $scope.saveEditedItems = function() {
               // 2-way data binding so just closing dialog box
               if ($scope.editAgendaText.$valid) {
-                $scope.closeThisDialog();
-                console.log($scope.newAgenda.title);
+                  
+                  $scope.closeThisDialog();
+                  
               }
         }
 
