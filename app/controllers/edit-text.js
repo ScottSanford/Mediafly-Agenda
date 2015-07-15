@@ -7,17 +7,26 @@ angular.module('agendaApp')
         }
 
         if ($routeParams.id === undefined) {
-          console.log(NewAgendaService);
+          
           $scope.title = NewAgendaService.title;
+
           var editList = NewAgendaService.items.filter(isItemSelected);
           $scope.agendaList = editList;
-        } else {
+
+        } 
+        else {
+
           for (var i = 0; i < InitAgendaService.data.length; i++) {
+
             if ($routeParams.id === InitAgendaService.data[i].id) {
+
               $scope.title = InitAgendaService.data[i].title;
-              console.log(InitAgendaService.data[i].items);
-              var editList = InitAgendaService.data[i].items.filter(isItemSelected);
+
+              var itemsArray = InitAgendaService.data[i].items[0].items;
+              
+              var editList = itemsArray.filter(isItemSelected);
               $scope.agendaList = editList;
+
             }
           }
         }
