@@ -1,6 +1,6 @@
 angular.module('agendaApp')
 
-  .controller('EditTextCtrl', function($rootScope, $scope, $routeParams, EditControlsService, NewAgendaService, InitAgendaService){
+  .controller('EditTextCtrl', function($rootScope, $scope, $routeParams, EditControlsService, NewAgendaService, InitAgendaService, mfly){
 
         function isItemSelected(element, index, array) {
           return element.checked;
@@ -26,6 +26,9 @@ angular.module('agendaApp')
               
               var editList = itemsArray.filter(isItemSelected);
               $scope.agendaList = editList;
+
+              var savedAgendaList = InitAgendaService.data;
+              mfly.putValue('agendalist', JSON.stringify(savedAgendaList));
 
             }
           }

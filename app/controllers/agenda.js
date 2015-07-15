@@ -70,10 +70,22 @@ angular.module('agendaApp')
         };
 
         $scope.deleteDialogBox = function(item) { 
+            // new agenda items array
             var newAgendaItemArray = NewAgendaService.items;
 
+            // saved agenda items array
+            for (var i = 0; i < agendaData.length; i++) {
+                if ($routeParams.id === agendaData[i].id) {
+
+                    // use this variable in scope
+                    var savedAgendaItemArray = agendaData[i].items[0].items;
+
+
+                }
+            }
+
             // open dialog if an item is checked
-            if (areItemsChecked(newAgendaItemArray)) {
+            if (areItemsChecked(newAgendaItemArray) || areItemsChecked(savedAgendaItemArray)) {
 
                 ngDialog.openConfirm({
                     template: 'partials/delete-items.html', 
@@ -88,16 +100,45 @@ angular.module('agendaApp')
                 });
 
                 $scope.deleteItems = function() {   
-                    var wantedItems = [];
+                    if ($routeParams.id === undefined) {
+    
+                        var wantedItems = [];
 
-                    wantedItems = NewAgendaService.items.filter(function(item){
-                        return !item.checked;
-                    });
+                        wantedItems = NewAgendaService.items.filter(function(item){
+                            return !item.checked;
+                        });
 
-                    $scope.agendaList = wantedItems;
-                    NewAgendaService.items = wantedItems;
+                        $scope.agendaList = wantedItems;
+                        NewAgendaService.items = wantedItems;
 
-                    ngDialog.closeAll();
+                        ngDialog.closeAll();
+                        
+                    } 
+                    else {
+                        for (var i = 0; i < i < agendaData.length; i++) {
+
+                            if ($routeParams.id === agendaData[i].id) {
+                                
+                                var savedWantedItems = [];
+
+                                savedWantedItems = savedAgendaItemArray.filter(function(item){
+                                    return !item.checked;
+                                });
+
+                                $scope.agendaList = savedWantedItems;
+                                savedAgendaItemArray = savedWantedItems; 
+
+                                console.log(agendaData[i]);
+
+                                // save changes after the item has been deleted
+                                // mfly.putValue('agendalist', JSON.stringify(InitAgendaService.data));
+
+                                ngDialog.closeAll();
+
+                            }
+
+                        }
+                    }
                 } 
             }  
 
