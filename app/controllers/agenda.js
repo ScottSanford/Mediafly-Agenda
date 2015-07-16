@@ -24,8 +24,8 @@ angular.module('agendaApp')
                         $scope.newAgenda = {
                             title: launchSavedAgenda[0].title
                         }
-
-                        $scope.agendaList = launchSavedAgenda[0].items[0].items;  
+                        console.log(launchSavedAgenda[0].items);
+                        $scope.agendaList = launchSavedAgenda[0].items;  
                     } 
                     InitAgendaService.data = agendaData;            
         }
@@ -127,11 +127,17 @@ angular.module('agendaApp')
 
                                 $scope.agendaList = savedWantedItems;
                                 savedAgendaItemArray = savedWantedItems; 
+                                console.log("newly deleted list :: " , savedAgendaItemArray);
 
-                                console.log(agendaData[i]);
+                                var autoSaveList = InitAgendaService.data;
+
+                                mfly.getValue('agendalist').then(function(response){
+                                        var data = JSON.parse(response);
+                                        // console.log('saved agendas ==> ', data);
+                                });
 
                                 // save changes after the item has been deleted
-                                // mfly.putValue('agendalist', JSON.stringify(InitAgendaService.data));
+                                mfly.putValue('agendalist', JSON.stringify(autoSaveList));
 
                                 ngDialog.closeAll();
 

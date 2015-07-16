@@ -36,7 +36,7 @@ angular.module('agendaApp')
                     console.log(unDeletedAgendas);
                     $scope.savedAgendas = unDeletedAgendas;
 
-                    $location.url('/');
+                    // $location.url('/');
 
                     ngDialog.closeAll();
                 }
