@@ -30,13 +30,13 @@ angular.module('agendaApp')
                             }       
                     });
 
+                    $scope.savedAgendas = unDeletedAgendas;
+                    console.log(unDeletedAgendas);
                     mfly.putValue('agendalist', JSON.stringify(unDeletedAgendas));
 
                     // update $scope
-                    console.log(unDeletedAgendas);
-                    $scope.savedAgendas = unDeletedAgendas;
 
-                    // $location.url('/');
+                    $location.url('/');
 
                     ngDialog.closeAll();
                 }
