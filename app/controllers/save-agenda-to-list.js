@@ -18,9 +18,9 @@ angular.module('agendaApp')
         $scope.saveAgendatoList = function() {
 
             // push object into array
-            for (var i = 0; i < NewAgendaService.items.length; i++) {
-                EditControlsService.saveAndPushToAgendaList($scope.newAgenda.title, NewAgendaService.items[i].name);
-            }
+            // for (var i = 0; i < NewAgendaService.items.length; i++) {
+                EditControlsService.saveAndPushToAgendaList($scope.newAgenda.title, NewAgendaService.items);
+            // }
 
             // save for local storage
             var savedAgendaList = InitAgendaService.data;

@@ -41,15 +41,12 @@ angular.module('agendaApp')
 		},
 
 		// pass $scope into function arguments
-		saveAndPushToAgendaList: function(agendaTitle, itemName) {
+		saveAndPushToAgendaList: function(agendaTitle, agendaItems) {
 			var newAgendaList = {
 				title: agendaTitle, 
 				id: '_' + Math.random().toString(36).substr(2, 9), 
 				dateCreated: Date.now(),
-				items: [{
-					name: itemName, 
-					checked: false
-				}]
+				items: agendaItems
 			}
 
 			InitAgendaService.data.push(newAgendaList);
