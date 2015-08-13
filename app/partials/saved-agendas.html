@@ -11,11 +11,15 @@
 			<tbody>
 				<!-- this will be in an ngRepeat -->
 				<tr ng-repeat="agenda in savedAgendas track by $index | orderBy: 'dateCreated'">
-					<td>{{agenda.title}}</td>
+					<td><a ng-href="#/{{agenda.id}}" class="agenda-saved-title" ng-click="closeDialogBox()">{{agenda.title}}</a></td>
 					<td>{{agenda.dateCreated | date: 'shortDate'}}</td>
 					<td>
-						<a ng-href="#/{{agenda.id}}"><span class="fa fa-rocket launch-agenda-btn" ng-click="closeDialogBox()"></span></a>
-						<a ng-href="#/{{agenda.id}}"><span class="fa fa-trash delete-agenda-btn" ng-click="deleteAgendaDialogBox(agenda)"></span></a>
+						<a ng-href="#/{{agenda.id}}" ng-click="closeDialogBox()">
+							<span class="fa fa-rocket launch-agenda-btn"></span>
+						</a>
+						<a ng-href="#/{{agenda.id}}">
+							<span class="fa fa-trash delete-agenda-btn" ng-click="deleteAgendaDialogBox(agenda)"></span>
+						</a>
 					</td>
 				</tr>			
 			</tbody>

@@ -21,6 +21,7 @@ angular.module('agendaApp')
             // combine everything into one controller
             $scope.deleteAgendaFromList = function() {
                 if ($routeParams.id === agenda.id) {
+                    console.log('clicked');
                     var index = $scope.savedAgendas.indexOf(agenda);
 
                     var unDeletedAgendas = [];
@@ -36,7 +37,8 @@ angular.module('agendaApp')
 
                     // update $scope
 
-                    $location.url('/');
+                    // $location.url('/');
+                    $location.url('mfly://#/');
 
                     ngDialog.closeAll();
                 }
@@ -54,7 +56,7 @@ angular.module('agendaApp')
 
 
         $scope.closeDialogBox = function() {
-            $scope.closeThisDialog();
+            ngDialog.closeAll();
         }
 
 	});

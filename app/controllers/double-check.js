@@ -18,7 +18,7 @@ angular.module('agendaApp')
         }
 		}
 
-        $scope.closeDialogBox = function() {
-              	$scope.closeThisDialog();
-        }
+    $scope.closeDialogBox = function() {
+          	$scope.closeThisDialog();
+    }
 	});

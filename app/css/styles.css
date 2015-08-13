@@ -1,9 +1,10 @@
 /***********************************************************************
 						                Global Styles
 ***********************************************************************/
-* {
-  user-select:none;
-}
+/** {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none; /* Disable selection/copy in UIWebView */
+/*}*/
 
 body {
   color:#535353;
@@ -116,6 +117,9 @@ li.item {
 .sortable-arrow {
   float:right;
   margin-top:5px;
+  cursor: move;
+  cursor: -webkit-grabbing;
+
 }
 
 .edit-buttons {
@@ -147,12 +151,12 @@ label {
 
 .add-agenda-item {
   border:2px solid #ccc;
-  height:34px;
+  height:45px;
   width:100%;
   padding:6px 12px;
   color:#363636;
   background-color: #fff;
-  font-size: 14px;
+  font-size: 18px;
   display: block;
   border-radius: 4px;
   margin-top:15px;
@@ -211,12 +215,12 @@ label {
 
 .edit-item-input {
   border: 2px solid #ccc;
-  height: 34px;
+  height: 45px;
   width: 90%;
   padding: 6px 12px;
   color: #363636;
   background-color: #fff;
-  font-size: 14px;
+  font-size: 18px;
   display: block;
   border-radius: 4px;
   margin-top:10px;
@@ -291,6 +295,10 @@ label {
   position: relative;
   left:10px;
   font-size:1.5em;
+}
+
+.agenda-saved-title, .agenda-saved-title:hover, .agenda-saved-title:active {
+  color:#535353;
 }
 
 /***********************************************************************

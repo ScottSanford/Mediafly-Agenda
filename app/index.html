@@ -15,7 +15,7 @@
 	<link rel="stylesheet" href="css/ngDialog.css">
 	<link rel="stylesheet" href="css/ngDialog-theme-plain.css">
 	<link rel="stylesheet" href="css/ngDialog-custom-width.css">
-	<link rel="stylesheet" href="css/ng-sortable.css">
+	<!-- <link rel="stylesheet" href="css/ng-sortable.css"> -->
 	<link rel="stylesheet" href="css/styles.css">
 	
 </head>
@@ -28,19 +28,19 @@
 	<nav id="menu">
 	        <ul>
 	        	<li class="menu-edit" ng-click="createNewAgenda()">
-	              <i class="fa fa-plus"></i> New Agenda
+	              <i class="fa fa-plus"></i><span class="menu-item">New Agenda</span>
 	            </li>
 	            <li class="menu-edit" ng-click="showEditButtons=!showEditButtons">
-	              <i class="fa fa-pencil"></i> Edit
+	              <i class="fa fa-pencil"></i><span class="menu-item">Edit</span>
 	            </li>
 	            <li class="menu-load" ng-click="savedAgendasDialogBox()">
-	              <i class="fa fa-list-ul"></i> Saved Agendas
+	              <i class="fa fa-list-ul"></i><span class="menu-item">Saved Agendas</span>
 	            </li>
 				<li class="menu-annotations">
-	              <i class="fa fa-pencil-square-o"></i> Annotations
+	              <i class="fa fa-pencil-square-o"></i><span class="menu-item">Annotations</span>
 	            </li>
 	            <li class="menu-close" ng-click="closeMenu()">
-	              <i class="fa fa-times"></i> Close 
+	              <i class="fa fa-times"></i><span class="menu-item">Close</span>
 	            </li>
 	        </ul>
 	</nav>
@@ -65,7 +65,8 @@
 	<script src="components/angular-animate/angular-animate.js"></script>
 	<script src="components/angular-messages/angular-messages.js"></script>
 	<script src="components/ngDialog/js/ngDialog.js"></script>
-	<script src="components/ng-sortable/dist/ng-sortable.js"></script>
+	<script src="components/Sortable/Sortable.js"></script>
+	<script src="components/Sortable/ng-sortable.js"></script>
 	<!-- // <script src="components/angular-mocks/angular-mocks.js"></script>	 -->
 	<script src="components/angular-touch/angular-touch.js"></script>
 	<script src="components/angular-hammer/angular-hammer.js"></script>
@@ -87,9 +88,10 @@
 	<script src="controllers/edit-text.js"></script>
 	<script src="controllers/save-agenda-to-list.js"></script>
 	<script src="controllers/saved-agendas.js"></script>
+	<script src="controllers/replace-saved-agenda.js"></script>
 	<script src="controllers/load-agenda.js"></script>
 	<script src="controllers/double-check.js"></script>
-	<!-- // <script src="http://10.0.0.175:8080/target/target-script-min.js"></script> -->
+    <!-- <script src="http://10.0.0.121:8080/target/target-script-min.js"></script> -->
 	
 	<script type="text/javascript">
 	$(document).ready(function(){

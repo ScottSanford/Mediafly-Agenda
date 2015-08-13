@@ -1,21 +1,17 @@
 #hamburger-menu {
 	color:#000;
-	opacity:.2;
-	position: absolute;
-	top: 0;
-	left: 0;
+	opacity: .2;
 }
 
-@font-face {
-	font-family:'OpenSans-Regular';
-	src:url('../fonts/OpenSans-Regular.ttf');
-	}
+#menu {
+	z-index: 100000000;
+}
 
 #menu li {
+	font-family: Helvetica-Light;
 	font-size: 18px;
-	padding: 10px 5px;
+	padding: 19px 5px;
 	margin-left: 10px;
-	font-family: 'OpenSans-Regular';
 }
 
 .title {
@@ -23,14 +19,12 @@
 	font-size: 30px;
 }
 
-hr {
-  margin-top: -10px;
-  width: 100%;
-  height:12px;
-  border:0;
-  box-shadow:inset 0 12px 12px -12px rgba(0,0,0,0.5);
+.text {
+	font-size:3em;
+	text-align: center;
+	margin-top:100px;
 }
 
-.menu-annotations {
-  margin-top:35px;
+i {
+	color:#9fbe3c;
 }

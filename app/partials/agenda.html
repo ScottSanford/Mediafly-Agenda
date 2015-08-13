@@ -2,13 +2,13 @@
 
 <hr>
 
-<ul class="agenda-list" data-as-sortable data-ng-model="agendaList">
-    <li class="item" ng-repeat="item in agendaList track by $index" data-as-sortable-item>
+<ul class="agenda-list" ng-sortable="sortableAgendaList">
+    <li class="item" ng-repeat="item in agendaList track by $index">
 		<div class="edit-controls">
 		    <div class="checkbox" ng-show="showEditButtons">
 		        <span><input type="checkbox" ng-model="item.checked"></span>
 		    </div>    
-		    <div class="sortable-arrow" ng-show="showEditButtons" data-as-sortable-item-handle>
+		    <div class="sortable-arrow" ng-show="showEditButtons">
 		        <span class="fa fa-arrows-v"></span>
 		    </div>
 		</div>

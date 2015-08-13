@@ -1,6 +1,6 @@
 <label>Agenda Item</label>
 <form role="form" name="addAgendaItem" novalidate>
-	<input type="text" class="add-agenda-item" name="addItemInput" ng-model="newItem" required>
+	<input type="text" class="add-agenda-item" name="addItemInput" ng-model="newItem" required autofocus>
 	<div ng-messages="addAgendaItem.addItemInput.$error" role="alert">
     	<span ng-message="required" class="text-validation-additem">
     		Required

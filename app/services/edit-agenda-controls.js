@@ -28,7 +28,7 @@ angular.module('agendaApp')
 				for (var i = 0; i < InitAgendaService.data.length; i++) {
 					if ($routeParams.id === InitAgendaService.data[i].id) {
 						// InitAgendaService.data[i].push(items);
-						var itemsArray = InitAgendaService.data[i].items[0].items;
+						var itemsArray = InitAgendaService.data[i].items;
 
 						itemsArray.push(items);
 
@@ -50,6 +50,17 @@ angular.module('agendaApp')
 			}
 
 			InitAgendaService.data.push(newAgendaList);
+		},
+
+		replaceSavedAgenda: function(agendaTitle, agendaId, agendaItems) {
+			var savedAgendaList = {
+				title: agendaTitle, 
+				id: agendaId, 
+				dateCreated: Date.now(),
+				items: agendaItems
+			}
+
+			// InitAgendaService.data.push(savedAgendaList);
 		},
 
 		saveEditedAgendaText: function() {

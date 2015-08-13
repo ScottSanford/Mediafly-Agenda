@@ -5,13 +5,14 @@ angular.module('agendaApp',[
 		'hmTouchEvents',
 		'Mediafly.services', 
 		'ngDialog',
-		'ui.sortable', 
+		'ng-sortable', 
 		// 'ngMockE2E', 
 		'ngMessages'
 	])
 
 	.config(function ($routeProvider, $compileProvider) {
-			$compileProvider.imgSrcSanitizationWhitelist(/^(mfly:\/\/data\/image|http:\/\/)/);	        
+			$compileProvider.imgSrcSanitizationWhitelist(/^(mfly:\/\/data\/image|http:\/\/)/);	
+			$compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|mfly):/);        
 	        $routeProvider
 	        	.when('/:id', {
 	        		templateUrl: "partials/agenda.html",

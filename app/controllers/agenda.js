@@ -24,7 +24,8 @@ angular.module('agendaApp')
                         $scope.newAgenda = {
                             title: launchSavedAgenda[0].title
                         }
-                        console.log(launchSavedAgenda[0].items);
+                        console.log("Items in Agenda :: ", launchSavedAgenda[0].items);
+                        $scope.agendaList = '';
                         $scope.agendaList = launchSavedAgenda[0].items;  
                     } 
                     InitAgendaService.data = agendaData;            
@@ -39,8 +40,8 @@ angular.module('agendaApp')
 
         // new agenda
         $rootScope.createNewAgenda = function() {
-            $window.location.href = 'http://localhost:8000/';
-            // $window.location.href = 'mfly://';
+            // $window.location.href = 'http://localhost:8000/';
+            $window.location.href = 'mfly://';
             initalizeAgenda();
         }
 
@@ -167,8 +168,15 @@ angular.module('agendaApp')
 
 
         $scope.saveDialogBox = function() { 
+            if ($routeParams.id === undefined) {
                 DialogService.createDialogBox('partials/save-load-agenda.html', 'ngdialog-theme-plain', 'SaveAgendaCtrl', $scope);
+            } else {
+                DialogService.createDialogBox('partials/replace-saved-agenda.html', 'ngdialog-theme-plain', 'ReplaceSavedCtrl', $scope);
+            }
         };
 
+        $scope.sortableAgendaList = {
+            handle: '.sortable-arrow', 
+        }
 
 	})
