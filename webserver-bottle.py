@@ -324,10 +324,6 @@ def partials(filename):
 def controllers(filename):
 	return static_file(filename, root='app/controllers')
 
-@get('/controllers/<filename:re:.*\.js>')
-def controllers(filename):
-	return static_file(filename, root='app/controllers')
-
 @get('/data/<filename:re:.*\.json')
 def data(filename):
 	return static_file(filename, root='app/data')

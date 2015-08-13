@@ -40,9 +40,16 @@ angular.module('agendaApp')
 
         // new agenda
         $rootScope.createNewAgenda = function() {
-            $window.location.href = 'http://localhost:8000/';
+            // $window.location.href = 'http://localhost:8000/';
             // $window.location.href = 'mfly://';
-            initalizeAgenda();
+            // initalizeAgenda();
+            $scope.newAgenda = {
+                title: NewAgendaService.title
+            }
+
+            $scope.agendaList = NewAgendaService.items;
+
+            $routeParams.id = undefined;  
         }
 
         // load button
@@ -170,9 +177,90 @@ angular.module('agendaApp')
 
         $scope.saveDialogBox = function() { 
             if ($routeParams.id === undefined) {
-                DialogService.createDialogBox('partials/save-load-agenda.html', 'ngdialog-theme-plain', 'SaveAgendaCtrl', $scope);
+
+                ngDialog.openConfirm({
+                    template: 'partials/save-load-agenda.html', 
+                    className: 'ngdialog-theme-plain', 
+                    scope: $scope, 
+                    controller: function($scope, $rootScope, $location, $routeParams, $q, MflyDataService, EditControlsService, InitAgendaService, NewAgendaService, DialogService, mfly) {
+                        
+                        $scope.newAgenda = {
+                            title: $scope.newAgenda.title
+                        }
+                    
+                        $scope.agendaList = InitAgendaService.data;
+
+                        $scope.saveAgendatoList = function() {
+
+                            // push object into array
+                            EditControlsService.saveAndPushToAgendaList($scope.newAgenda.title, NewAgendaService.items);
+
+                            // save for local storage
+                            var savedAgendaList = InitAgendaService.data;
+
+                            mfly.putValue('agendalist', JSON.stringify(savedAgendaList));
+
+                            console.log("Saved Agendas ==> " , InitAgendaService.data);
+                            $scope.closeThisDialog();
+
+                            $rootScope.showEditButtons = false;
+
+                        }
+
+                        $scope.closeDialogBox = function() {
+                            $scope.closeThisDialog();
+                        } 
+                    }
+                });
             } else {
-                DialogService.createDialogBox('partials/replace-saved-agenda.html', 'ngdialog-theme-plain', 'ReplaceSavedCtrl', $scope);
+                // DialogService.createDialogBox('partials/replace-saved-agenda.html', 'ngdialog-theme-plain', 'ReplaceSavedCtrl', $scope);
+                ngDialog.openConfirm({
+                    template: 'partials/replace-saved-agenda.html', 
+                    className: 'ngdialog-theme-plain', 
+                    scope: $scope, 
+                    controller: function($scope, $rootScope, $location, $routeParams, $q, MflyDataService, EditControlsService, InitAgendaService, NewAgendaService, DialogService, mfly) {
+                        
+                        for (var i = 0; i < InitAgendaService.data.length; i++) {
+                            if ($routeParams.id === InitAgendaService.data[i].id) {
+                                $scope.title = InitAgendaService.data[i].title;         
+                            }
+                        }
+
+                        $scope.agendaList = InitAgendaService.data;
+
+                        $scope.replaceSavedAgenda = function() {
+
+                            function findAndReplace(object, title, id, items){
+                              for(var prop in object){
+                                if(object[prop] == $routeParams.id){ 
+                                  object["title"] = title;
+                                  object["id"] = id;
+                                  object["items"] = items;
+                                  break;
+                                }
+                              }
+                            }
+
+                            findAndReplace(InitAgendaService.data, $scope.newAgenda.title, $routeParams.id, $scope.agendaList);
+
+                            // save for local storage
+                            var savedAgendaList = InitAgendaService.data;
+
+                            mfly.putValue('agendalist', JSON.stringify(savedAgendaList));
+
+                            console.log("Saved Agendas ==> " , InitAgendaService.data);
+                            $scope.closeThisDialog();
+
+                            $rootScope.showEditButtons = false;
+
+                        }
+
+                        $scope.closeDialogBox = function() {
+                            $scope.closeThisDialog();
+                        }   
+                    
+                    }
+                });
             }
         };
 
