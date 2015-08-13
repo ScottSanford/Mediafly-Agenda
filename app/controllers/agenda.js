@@ -40,8 +40,8 @@ angular.module('agendaApp')
 
         // new agenda
         $rootScope.createNewAgenda = function() {
-            // $window.location.href = 'http://localhost:8000/';
-            $window.location.href = 'mfly://';
+            $window.location.href = 'http://localhost:8000/';
+            // $window.location.href = 'mfly://';
             initalizeAgenda();
         }
 
@@ -79,7 +79,8 @@ angular.module('agendaApp')
                 if ($routeParams.id === agendaData[i].id) {
 
                     // use this variable in scope
-                    var savedAgendaItemArray = agendaData[i].items[0].items;
+                    var savedAgendaItemArray = agendaData[i].items;
+                    console.log(typeof savedAgendaItemArray);
 
 
                 }
