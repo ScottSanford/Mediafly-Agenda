@@ -42,7 +42,9 @@ angular.module('agendaApp')
         // new agenda
         $rootScope.createNewAgenda = function() {
 
-            var restartAgenda = {
+            $routeParams.id = undefined;  
+            // restart NewAgendaService
+            var NewAgendaService = {
                                     "title": "Mediafly Agenda",
                                     "dateCreated": 1434751867, 
                                     "id": undefined,
@@ -54,14 +56,13 @@ angular.module('agendaApp')
                                 }
 
             $scope.newAgenda = {
-                title: restartAgenda.title
+                title: NewAgendaService.title
             }
 
-            for (var i = 0; i < restartAgenda.items.length; i++) {
-                $scope.agendaList = restartAgenda.items; 
+            for (var i = 0; i < NewAgendaService.items.length; i++) {
+                $scope.agendaList = NewAgendaService.items; 
             }
 
-            $routeParams.id = undefined;  
 
         }
 

@@ -2,45 +2,47 @@ angular.module('agendaApp')
 
 	.controller('SavedAgendasCtrl', function($scope, $rootScope, $location, $routeParams, EditControlsService, InitAgendaService, NewAgendaService, ngDialog, mfly){
 
-        // apparently this has stopped working and now have to use InitAgendaService.data to $scope...weird
-        // mfly.getValue('agendalist').then(function(response){
-
-        //     var savedAgendaList = JSON.parse(response);
-
-        //     $scope.savedAgendas = savedAgendaList;
-
-        // });
-
         $scope.savedAgendas = InitAgendaService.data;
 
+        $scope.launchSavedAgenda = function(agenda) {
+            $location.url(agenda.id);
+            ngDialog.closeAll();
+        }
+
         $scope.deleteAgendaDialogBox = function(agenda) {
-            // check to see if this is being triggered in weinre 
-            // set console.log();
+
+            // works better in controller than setting url in the view 
+            $location.url(agenda.id);
+
+
             if ($routeParams.id === agenda.id) {
                 $scope.title = agenda.title;
             };
 
             // combine everything into one controller
             $scope.deleteAgendaFromList = function() {
+
                 if ($routeParams.id === agenda.id) {
-                    console.log('clicked');
+
                     var index = $scope.savedAgendas.indexOf(agenda);
 
                     var unDeletedAgendas = [];
+
                     unDeletedAgendas = InitAgendaService.data.filter(function(item){
+
                             if ($routeParams.id !== item.id) {
                                 return item;
-                            }       
+                            }    
+
                     });
 
                     $scope.savedAgendas = unDeletedAgendas;
-                    console.log(unDeletedAgendas);
+
+                        console.log(unDeletedAgendas);
+
                     mfly.putValue('agendalist', JSON.stringify(unDeletedAgendas));
 
-                    // update $scope
-
-                    // $location.url('/');
-                    $location.url('mfly://#/');
+                    $location.url('/');
 
                     ngDialog.closeAll();
                 }

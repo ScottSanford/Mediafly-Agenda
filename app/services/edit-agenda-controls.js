@@ -27,7 +27,7 @@ angular.module('agendaApp')
 		    else {
 				for (var i = 0; i < InitAgendaService.data.length; i++) {
 					if ($routeParams.id === InitAgendaService.data[i].id) {
-						// InitAgendaService.data[i].push(items);
+
 						var itemsArray = InitAgendaService.data[i].items;
 
 						itemsArray.push(items);
