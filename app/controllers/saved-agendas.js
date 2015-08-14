@@ -14,6 +14,8 @@ angular.module('agendaApp')
         $scope.savedAgendas = InitAgendaService.data;
 
         $scope.deleteAgendaDialogBox = function(agenda) {
+            // check to see if this is being triggered in weinre 
+            // set console.log();
             if ($routeParams.id === agenda.id) {
                 $scope.title = agenda.title;
             };

@@ -17,6 +17,7 @@ angular.module('agendaApp')
                     } 
 
                     else {
+                        // see if when the launch button on saved agendas is pushed if this is triggered
                         var launchSavedAgenda = agendaData.filter(function(item) {
                             return item.id === $routeParams.id;
                         });
@@ -40,16 +41,28 @@ angular.module('agendaApp')
 
         // new agenda
         $rootScope.createNewAgenda = function() {
-            // $window.location.href = 'http://localhost:8000/';
-            // $window.location.href = 'mfly://';
-            // initalizeAgenda();
+
+            var restartAgenda = {
+                                    "title": "Mediafly Agenda",
+                                    "dateCreated": 1434751867, 
+                                    "id": undefined,
+                                    "items": [
+                                        {"name": "Mediafly Intro","checked": false},
+                                        {"name": "Mediafly Middle","checked": false},
+                                        {"name": "Mediafly Conclusion", "checked": false}
+                                    ]
+                                }
+
             $scope.newAgenda = {
-                title: NewAgendaService.title
+                title: restartAgenda.title
             }
 
-            $scope.agendaList = NewAgendaService.items;
+            for (var i = 0; i < restartAgenda.items.length; i++) {
+                $scope.agendaList = restartAgenda.items; 
+            }
 
             $routeParams.id = undefined;  
+
         }
 
         // load button

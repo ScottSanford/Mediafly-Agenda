@@ -38,6 +38,7 @@ textarea:focus, input:focus, button:hover, button:active{
 	padding-right:0;
 	padding-left:0;
 	width:1024px;
+  -webkit-user-select: none;
 }
 
 /*  Next/Prev arrows bottom of page  */
