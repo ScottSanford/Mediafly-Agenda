@@ -11,7 +11,7 @@
 			<tbody>
 				<!-- this will be in an ngRepeat -->
 				<tr ng-repeat="agenda in savedAgendas track by $index | orderBy: 'dateCreated'">
-					<td><a ng-href="#/{{agenda.id}}" class="agenda-saved-title">{{agenda.title}}</a></td>
+					<td ng-click="launchSavedAgenda(agenda)">{{agenda.title}}</a></td>
 					<td>{{agenda.dateCreated | date: 'shortDate'}}</td>
 					<td>
 						<span class="fa fa-rocket launch-agenda-btn" ng-click="launchSavedAgenda(agenda)"></span>

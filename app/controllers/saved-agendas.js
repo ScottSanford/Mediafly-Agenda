@@ -7,6 +7,15 @@ angular.module('agendaApp')
         $scope.launchSavedAgenda = function(agenda) {
             $location.url(agenda.id);
             ngDialog.closeAll();
+
+            // mflyCommands.getValue
+            if ($routeParams.id === agenda.id) {
+                
+            }
+
+            console.log(InitAgendaService.data);
+
+            // mflyCommands.getValue()
         }
 
         $scope.deleteAgendaDialogBox = function(agenda) {

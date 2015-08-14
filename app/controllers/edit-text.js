@@ -22,7 +22,8 @@ angular.module('agendaApp')
 
               $scope.title = InitAgendaService.data[i].title;
 
-              var itemsArray = InitAgendaService.data[i].items[0].items;
+              var itemsArray = InitAgendaService.data[i].items;
+              console.log(itemsArray);
               
               var editList = itemsArray.filter(isItemSelected);
               $scope.agendaList = editList;
