@@ -6,7 +6,6 @@ angular.module('agendaApp',[
 		'Mediafly.services', 
 		'ngDialog',
 		'ng-sortable', 
-		// 'ngMockE2E', 
 		'ngMessages'
 	])
 
@@ -20,6 +19,9 @@ angular.module('agendaApp',[
 	        		resolve: {
 							agendaData: function(InitAgendaService){
 								return InitAgendaService.get();
+							}, 
+							lastAgenda: function($q, mfly, $route) {
+								mfly.putValue('lastAgenda', $route.current.params.id);
 							}
 						}    		
 	        	})
@@ -27,8 +29,25 @@ angular.module('agendaApp',[
 	        		templateUrl: "partials/agenda.html",
 	        		controller: 'agendaListCtrl',
 	        		resolve: {
-							agendaData: function(InitAgendaService){
-								return InitAgendaService.get();
+							agendaData: function($location, $q, InitAgendaService, mfly){
+								var deferred = $q.defer();
+								var initAgendaPromise = InitAgendaService.get();
+								var lastAgendaPromise =	mfly.getValue('lastAgenda');
+
+								$q.all([initAgendaPromise, lastAgendaPromise])
+									.then(function(results) {
+										var lastAgenda = results[1];
+										if (lastAgenda) {
+											deferred.reject();
+											$location.url('/' + lastAgenda);
+										}
+										else {
+											deferred.resolve(results[0]);
+										}
+									});
+
+								return deferred.promise;
+
 							}
 						}    		
 	        	})

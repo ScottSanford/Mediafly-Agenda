@@ -4,6 +4,8 @@ angular.module('agendaApp')
 
         function initalizeAgenda() {
 
+                    console.log(window.location.href);
+
                     if ($routeParams.id === undefined) {
 
                             $scope.newAgenda = {
@@ -16,25 +18,32 @@ angular.module('agendaApp')
 
                     } 
 
+
+
                     else {
-                        // this is probably where mfly.getValues should be
+
                         mfly.getValue('agendalist').then(function(data){
+
+                            // parse saved data on the app
                             var parseData = JSON.parse(data);
                             
-                            var launchSavedAgenda = agendaData.filter(function(item) {
+                            // agenda id matches route param 
+                            var launchSavedAgenda = parseData.filter(function(item) {
                                 return item.id === $routeParams.id;
                             });
                             
+                            // title to view
                             $scope.newAgenda = {
                                 title: launchSavedAgenda[0].title
                             }
                             
+                            // agenda items to view
                             $scope.agendaList = '';
-                            $scope.agendaList = launchSavedAgenda[0].items;  
+                            $scope.agendaList = launchSavedAgenda[0].items; 
+
                         })
                 
                     } 
-                    InitAgendaService.data = agendaData;            
         }
 
         initalizeAgenda();
@@ -58,6 +67,8 @@ angular.module('agendaApp')
                                     ];
                 }
             }
+
+            mfly.putValue('lastAgenda', '');
 
             replaceNewAgenda(NewAgendaService);
             console.log(NewAgendaService);
