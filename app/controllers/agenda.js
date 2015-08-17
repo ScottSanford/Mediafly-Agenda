@@ -17,17 +17,21 @@ angular.module('agendaApp')
                     } 
 
                     else {
-                        // see if when the launch button on saved agendas is pushed if this is triggered
-                        var launchSavedAgenda = agendaData.filter(function(item) {
-                            return item.id === $routeParams.id;
-                        });
+                        // this is probably where mfly.getValues should be
+                        console.log("agendaData :: ", agendaData);
+                        mflyCommands.getValues().then(function(){
+                            var launchSavedAgenda = agendaData.filter(function(item) {
+                                return item.id === $routeParams.id;
+                            });
 
-                        $scope.newAgenda = {
-                            title: launchSavedAgenda[0].title
-                        }
-                        console.log("Items in Agenda :: ", launchSavedAgenda[0].items);
-                        $scope.agendaList = '';
-                        $scope.agendaList = launchSavedAgenda[0].items;  
+                            $scope.newAgenda = {
+                                title: launchSavedAgenda[0].title
+                            }
+                            console.log("Items in Agenda :: ", launchSavedAgenda[0].items);
+                            $scope.agendaList = '';
+                            $scope.agendaList = launchSavedAgenda[0].items;  
+                            
+                        })
                     } 
                     InitAgendaService.data = agendaData;            
         }

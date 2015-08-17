@@ -1,21 +1,15 @@
 angular.module('agendaApp')
 
-	.controller('SavedAgendasCtrl', function($scope, $rootScope, $location, $routeParams, EditControlsService, InitAgendaService, NewAgendaService, ngDialog, mfly){
+	.controller('SavedAgendasCtrl', function($scope, $rootScope, $location, $timeout, $routeParams, EditControlsService, InitAgendaService, MflyDataService, NewAgendaService, ngDialog, mfly){
 
         $scope.savedAgendas = InitAgendaService.data;
 
         $scope.launchSavedAgenda = function(agenda) {
-            $location.url(agenda.id);
-            ngDialog.closeAll();
-
-            // mflyCommands.getValue
-            if ($routeParams.id === agenda.id) {
-                
-            }
-
             console.log(InitAgendaService.data);
 
-            // mflyCommands.getValue()
+            $location.path(agenda.id);            
+            ngDialog.closeAll();
+
         }
 
         $scope.deleteAgendaDialogBox = function(agenda) {
