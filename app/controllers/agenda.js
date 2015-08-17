@@ -18,20 +18,21 @@ angular.module('agendaApp')
 
                     else {
                         // this is probably where mfly.getValues should be
-                        console.log("agendaData :: ", agendaData);
-                        mflyCommands.getValues().then(function(){
+                        mfly.getValue('agendalist').then(function(data){
+                            var parseData = JSON.parse(data);
+                            
                             var launchSavedAgenda = agendaData.filter(function(item) {
                                 return item.id === $routeParams.id;
                             });
-
+                            
                             $scope.newAgenda = {
                                 title: launchSavedAgenda[0].title
                             }
-                            console.log("Items in Agenda :: ", launchSavedAgenda[0].items);
+                            
                             $scope.agendaList = '';
                             $scope.agendaList = launchSavedAgenda[0].items;  
-                            
                         })
+                
                     } 
                     InitAgendaService.data = agendaData;            
         }
@@ -110,9 +111,6 @@ angular.module('agendaApp')
 
                     // use this variable in scope
                     var savedAgendaItemArray = agendaData[i].items;
-                    console.log(typeof savedAgendaItemArray);
-
-
                 }
             }
 
@@ -147,9 +145,9 @@ angular.module('agendaApp')
                         
                     } 
                     else {
-                        for (var i = 0; i < i < agendaData.length; i++) {
+                        for (var i = 0; i < i < InitAgendaService.data.length; i++) {
 
-                            if ($routeParams.id === agendaData[i].id) {
+                            if ($routeParams.id === InitAgendaService.data[i].id) {
                                 
                                 var savedWantedItems = [];
 
@@ -160,6 +158,9 @@ angular.module('agendaApp')
                                 $scope.agendaList = savedWantedItems;
                                 savedAgendaItemArray = savedWantedItems; 
                                 console.log("newly deleted list :: " , savedAgendaItemArray);
+
+                                InitAgendaService.data[i].items = savedAgendaItemArray;
+                                console.log("after == ", InitAgendaService.data[i].items);
 
                                 var autoSaveList = InitAgendaService.data;
 

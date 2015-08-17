@@ -17,14 +17,6 @@ angular.module('agendaApp')
 
         $scope.replaceSavedAgenda = function() {
 
-            // push object into Saved Agendas array
-            // for (var i = 0; i < InitAgendaService.data.length; i++) {
-            //     if ($routeParams.id === InitAgendaService.data[i].id) {
-            //         InitAgendaService.data[i] = EditControlsService.replaceSavedAgenda($scope.newAgenda.title, $routeParams.id, NewAgendaService.items);
-            //         break;
-            //     }
-            // }
-
             function findAndReplace(object, title, id, items){
               for(var prop in object){
                 if(object[prop] == $routeParams.id){ 
