@@ -36,7 +36,9 @@ angular.module('agendaApp',[
 
 								$q.all([initAgendaPromise, lastAgendaPromise])
 									.then(function(results) {
+
 										var lastAgenda = results[1];
+
 										if (lastAgenda) {
 											deferred.reject();
 											$location.url('/' + lastAgenda);
@@ -44,10 +46,15 @@ angular.module('agendaApp',[
 										else {
 											deferred.resolve(results[0]);
 										}
+									}, function(response){
+
+										mfly.putValue('lastAgenda', '');
+										deferred.resolve([]);
+
 									});
 
 								return deferred.promise;
-
+								
 							}
 						}    		
 	        	})

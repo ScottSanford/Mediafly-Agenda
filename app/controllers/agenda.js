@@ -4,7 +4,6 @@ angular.module('agendaApp')
 
         function initalizeAgenda() {
 
-                    console.log(window.location.href);
 
                     if ($routeParams.id === undefined) {
 
