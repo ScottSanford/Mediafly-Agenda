@@ -13,7 +13,7 @@ angular.module('agendaApp')
 
                             $scope.agendaList = NewAgendaService.items;
 
-                            $routeParams.id = undefined;           
+                            $routeParams.id = undefined;          
 
                     } 
 
@@ -81,8 +81,6 @@ angular.module('agendaApp')
             for (var i = 0; i < NewAgendaService.items.length; i++) {
                 $scope.agendaList = NewAgendaService.items; 
             }
-
-            $scope.showEditButtons = false;
 
         }
 
@@ -285,6 +283,8 @@ angular.module('agendaApp')
                             console.log("Saved Agendas ==> " , InitAgendaService.data);
                             $scope.closeThisDialog();
 
+
+                            $rootScope.showEditButtons = true;
                             $rootScope.showEditButtons = false;
 
                         }

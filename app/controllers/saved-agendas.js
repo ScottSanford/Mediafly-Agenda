@@ -45,6 +45,7 @@ angular.module('agendaApp')
 
                     mfly.putValue('agendalist', JSON.stringify(unDeletedAgendas));
 
+                    mfly.putValue('lastAgenda', '');
                     $location.url('/');
 
                     ngDialog.closeAll();
