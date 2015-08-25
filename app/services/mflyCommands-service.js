@@ -29,6 +29,14 @@ angular.module('agendaApp').factory("mfly", function($q) {
                     mflyCommands.close();
                 }, 
 
+                previous: function() {
+                    mflyCommands.previous();
+                },
+
+                next: function() {
+                    mflyCommands.next();
+                },
+
                 search: function() {
                     var deferred = $q.defer();
                     mflyCommands.search('@agendaslide')

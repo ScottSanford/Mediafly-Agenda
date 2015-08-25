@@ -302,4 +302,13 @@ angular.module('agendaApp')
             handle: '.sortable-arrow', 
         }
 
+        // mfly go to next or previous items 
+        $rootScope.previousItem = function() {
+            mfly.previous();
+        }
+
+        $rootScope.nextItem = function() {
+            mfly.next();
+        }
+
 	})

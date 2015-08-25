@@ -78,7 +78,7 @@ textarea:focus, input:focus, button:hover, button:active{
 
 .agenda-title {
   text-align: center;
-  margin: 50px auto;
+  margin:50px auto;
   font-family: Helvetica;
   font-weight: 300;
   font-size: 60px;
@@ -306,7 +306,7 @@ label {
                             Media Queries
 ***********************************************************************/
 /*iPad Portrait*/
-@media only screen and (max-width: 959px) {
+@media only screen and (width: 768px) and (orientation:portrait){
 
   .container {
     width:768px;
@@ -324,4 +324,485 @@ label {
     margin-bottom: 0;
   }
 
+  .edit-buttons {
+    position: absolute;
+    top:12px;
+    left:160px;
+  }
+
+}
+
+/***************************************************
+        iPhone 6+
+****************************************************/
+/*Landscape*/
+@media only screen and (width:736px) and (orientation: landscape) {
+  .container {
+    width:736px;
+  }
+
+  .agenda-title {
+    margin:0 auto;
+    font-size: 40px
+  }
+
+  ul.agenda-list {
+    margin-left:-55px;
+  }
+
+  li.item {
+    font-size:25px;
+    margin-bottom:20px;
+  }
+
+  .edit-buttons {
+    position: absolute;
+    top:17px;
+    left:285px;
+  }
+}
+
+/*Portrait*/
+@media only screen and (width:414px) and (orientation: portrait) {
+  .container {
+    width:414px;
+  }
+
+  .agenda-title {
+    margin:15 auto;
+    font-size: 40px
+  }
+
+  ul.agenda-list {
+    margin-left:-55px;
+  }
+
+  li.item {
+    font-size:25px;
+  }
+
+  .edit-buttons {
+    position: absolute;
+    top:12px;
+    left:70px;
+  }
+
+  .text-validation-additem {
+    color: #8a6d3b;
+    position: relative;
+    left: 320px;
+  }
+
+  .add-button {
+    margin-left: 333px;
+  }
+
+  .save-button {
+    left:245px;
+  }
+
+}
+
+/***************************************************
+        iPhone 6
+****************************************************/
+
+/*Landscape*/
+@media only screen and (width: 667px) and (orientation:landscape) {
+  .container {
+    width:667px;
+  }
+
+  .agenda-title {
+    margin:0 auto;
+    font-size: 40px
+  }
+
+  ul.agenda-list {
+    margin-left:-55px;
+  }
+
+  li.item {
+    font-size:25px;
+    margin-bottom:20px;
+  }
+
+  .edit-buttons {
+    position: absolute;
+    top:17px;
+    left:255px;
+  }
+}
+
+/*Portrait*/
+@media only screen and (width:375px) and (orientation:portrait) {
+ .container {
+    width:375px;
+  }
+
+  .agenda-title {
+    /*margin-left:-35px;*/
+    font-size: 40px
+  }
+
+  ul.agenda-list {
+    margin-left:-55px;
+  }
+
+  li.item {
+    font-size:25px;
+  }
+
+  .edit-buttons {
+    position: absolute;
+    top:12px;
+    left:60px;
+  }
+
+  .text-validation-additem {
+    color: #8a6d3b;
+    position: relative;
+    left: 282px;
+  }
+
+  .add-button {
+    margin-left: 293px;
+  }
+
+  .save-button {
+    left:200px;
+  }
+}
+
+/***************************************************
+        iPhone 5
+****************************************************/
+
+/*Landscape*/
+@media only screen and (width: 568px) and (orientation:landscape) {
+  .container {
+    width:568px;
+  }
+
+  .agenda-title {
+    margin:0 auto;
+    font-size: 35px
+  }
+
+  ul.agenda-list {
+    margin-left:-55px;
+  }
+
+  li.item {
+    font-size:22px;
+    margin-bottom:20px;
+  }
+
+  .edit-buttons {
+    position: relative;
+    top: 6px;
+    left: 185px;
+  }
+
+  .ngdialog.ngdialog-theme-plain .ngdialog-content {
+    margin:-90px auto;
+  }
+}
+
+/*Portrait*/
+@media only screen and (width:320px) and (orientation:portrait) {
+ .container {
+    width:320px;
+  }
+
+  .agenda-title {
+    /*margin-left: -90px;*/
+    font-size: 35px;
+  }
+
+  ul.agenda-list {
+    margin-left:-55px;
+  }
+
+  li.item {
+    font-size:22px;
+  }
+
+  .edit-buttons {
+    position: absolute;
+    top:12px;
+    left:60px;
+  }
+
+  .text-validation-additem {
+    color: #8a6d3b;
+    position: relative;
+    left: 228px;
+  }
+
+  .add-button {
+    margin-left: 240px;
+  }
+
+  .save-button {
+    left:145px;
+  }
+}
+
+/*************************************************************************************
+                Media Queries for Android
+**************************************************************************************/
+/*This is an Inside Mediafly Interactive. Our Salesreps only use iOS. Really no need
+to do Android on it*/
+/***************************************************
+        Samsung Galaxy Tab
+****************************************************/
+/*Landscape*/
+@media only screen and (height:600px) and (orientation: landscape) {
+.container {
+    width:600px;
+  }
+
+  .agenda-title {
+    margin:0px auto;
+    font-size: 50px
+  }
+
+  ul.agenda-list {
+    margin-left:-100px;
+  }
+
+  li.item {
+    font-size:30px;
+    margin-left:90px;
+  }
+
+  .edit-buttons {
+    position: absolute;
+    top:25px;
+    right:10px;
+  }
+
+  .text-validation-additem {
+    color: #8a6d3b;
+    position: relative;
+    left: 357px;
+  }
+
+  .add-button {
+    margin-left: 368px;
+  }
+
+  .save-button {
+    left:278px;
+  }
+}
+
+/*Portrait*/
+@media only screen and (width:600px) and (orientation: portrait) {
+.container {
+    width:600px;
+  }
+
+  .agenda-title {
+    /*margin:15 auto;*/
+    font-size: 50px
+  }
+
+  ul.agenda-list {
+    margin-left:-100px;
+  }
+
+  li.item {
+    font-size:30px;
+  }
+
+  .edit-buttons {
+    position: absolute;
+    top:12px;
+    left:120px;
+  }
+
+  .text-validation-additem {
+    color: #8a6d3b;
+    position: relative;
+    left: 357px;
+  }
+
+  .add-button {
+    margin-left: 368px;
+  }
+
+  .save-button {
+    left:278px;
+  }
+}
+
+/***************************************************
+        Google Nexus 7
+****************************************************/
+/*Landscape*/
+@media only screen and (width:966px) and (orientation: landscape) {
+  .container {
+    width:996px;
+  }
+
+  .agenda-title {
+    margin:0px auto;
+    font-size: 50px
+  }
+
+  ul.agenda-list {
+    margin-left:-100px;
+  }
+
+  li.item {
+    font-size:30px;
+    margin-left:200px;
+  }
+
+  .edit-buttons {
+    position: absolute;
+    top:25px;
+    right:10px;
+  }
+
+  .text-validation-additem {
+    color: #8a6d3b;
+    position: relative;
+    left: 357px;
+  }
+
+  .add-button {
+    margin-left: 368px;
+  }
+
+  .save-button {
+    left:278px;
+  }
+}
+
+/*Portrait*/
+@media only screen and (width:603px) and (orientation: portrait) {
+  .container {
+      width:603px;
+    }
+
+    .agenda-title {
+      /*margin:15 auto;*/
+      font-size: 50px
+    }
+
+    ul.agenda-list {
+      margin-left:-100px;
+    }
+
+    li.item {
+      font-size:30px;
+    }
+
+    .edit-buttons {
+      position: absolute;
+      top:12px;
+      left:120px;
+    }
+
+    .text-validation-additem {
+      color: #8a6d3b;
+      position: relative;
+      left: 357px;
+    }
+
+    .add-button {
+      margin-left: 368px;
+    }
+
+    .save-button {
+      left:278px;
+    }
+}
+
+/***************************************************
+        Samsung Galaxy S5
+****************************************************/
+/*Landscape*/
+@media only screen and (width:640px) and (orientation: landscape) {
+  .container {
+    width:640px;
+  }
+
+  .agenda-title {
+    margin:0px auto;
+    font-size: 40px
+  }
+
+  ul.agenda-list {
+    margin-left:-100px;
+  }
+
+  li.item {
+    font-size:25px;
+    margin-left:200px;
+    margin-bottom:20px;
+  }
+
+  .edit-buttons {
+    position: absolute;
+    top:25px;
+    right:10px;
+  }
+
+  .text-validation-additem {
+    color: #8a6d3b;
+    position: relative;
+    left: 357px;
+  }
+
+  .add-button {
+    margin-left: 368px;
+  }
+
+  .save-button {
+    left:278px;
+  }
+}
+
+/*Portrait*/
+@media only screen and (width:360px) and (orientation: portrait) {
+ .container {
+    width:360px;
+  }
+
+  .agenda-title {
+    
+    font-size: 40px
+  }
+
+  ul.agenda-list {
+    margin-left:-55px;
+  }
+
+  li.item {
+    font-size:25px;
+  }
+
+  .edit-buttons {
+    position: absolute;
+    top:12px;
+    left:60px;
+  }
+
+  .text-validation-additem {
+    color: #8a6d3b;
+    position: relative;
+    left: 267px;
+  }
+
+  .add-button {
+    margin-left: 280px;
+  }
+
+  .save-button {
+    left:180px;
+  }
 }
